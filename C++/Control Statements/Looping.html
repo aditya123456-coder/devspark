@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looping in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Looping Statements</h1>
+    </div>
+
+    <div class="div">
+        <h2>while Loop</h2>
+        <h3>
+            Theory: The <code>while</code> loop repeatedly executes a block of code as long as the condition is true.  
+            The condition is tested before each iteration, so it may execute zero times if the condition is false at the start.  
+        </h3>
+        <pre><code>
+// while loop - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 1;
+    while (i &lt;= 5) {
+        cout &lt;&lt; "Number: " &lt;&lt; i &lt;&lt; endl;
+        i++;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>do-while Loop</h2>
+        <h3>
+            Theory: The <code>do-while</code> loop executes the block at least once, and then checks the condition at the end.  
+            This guarantees at least one execution regardless of the condition.  
+        </h3>
+        <pre><code>
+// do-while loop - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 1;
+    do {
+        cout &lt;&lt; "Number: " &lt;&lt; i &lt;&lt; endl;
+        i++;
+    } while (i &lt;= 5);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>for Loop</h2>
+        <h3>
+            Theory: The <code>for</code> loop is used when the number of iterations is known in advance.  
+            It combines initialization, condition, and increment/decrement in one line.  
+        </h3>
+        <pre><code>
+// for loop - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 1; i &lt;= 5; i++) {
+        cout &lt;&lt; "Number: " &lt;&lt; i &lt;&lt; endl;
+    }
+
+    // Example with multiple control variables
+    for (int i = 1, j = 5; i &lt;= j; i++, j--) {
+        cout &lt;&lt; "i = " &lt;&lt; i &lt;&lt; ", j = " &lt;&lt; j &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Notes</h2>
+        <h3>
+            - Use <code>while</code> when the number of iterations is not fixed and depends on a condition.<br>
+            - Use <code>do-while</code> if the block must run at least once.<br>
+            - Use <code>for</code> when the number of iterations is known in advance.<br>
+            - All three loops can be interchanged logically, but readability and intent matter.<br>
+        </h3>
+    </div>
+</body>
+</html>

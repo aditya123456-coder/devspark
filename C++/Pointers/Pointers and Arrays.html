@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointers and Arrays in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Pointers and Arrays</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. Array Name as a Pointer</h2>
+        <h3>
+            The name of an array acts like a pointer to its first element.  
+            So, <code>arr</code> is equivalent to <code>&amp;arr[0]</code>.  
+            Accessing elements can be done with both array indexing and pointer arithmetic.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[3] = {10, 20, 30};
+
+    cout &lt;&lt; "arr = " &lt;&lt; arr &lt;&lt; endl;
+    cout &lt;&lt; "&amp;arr[0] = " &lt;&lt; &arr[0] &lt;&lt; endl;
+
+    cout &lt;&lt; "First element using arr[0]: " &lt;&lt; arr[0] &lt;&lt; endl;
+    cout &lt;&lt; "First element using *arr: " &lt;&lt; *arr &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Accessing Array Elements with Pointers</h2>
+        <h3>
+            Using pointer arithmetic, we can access array elements.  
+            <code>*(arr + i)</code> is equivalent to <code>arr[i]</code>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5};
+
+    for(int i = 0; i &lt; 5; i++) {
+        cout &lt;&lt; "arr[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; *(arr + i) &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Pointer Iteration Through Array</h2>
+        <h3>
+            Instead of array indexing, a pointer can be incremented to move through the array elements.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[4] = {100, 200, 300, 400};
+    int *ptr = arr;
+
+    for(int i = 0; i &lt; 4; i++) {
+        cout &lt;&lt; "Element " &lt;&lt; i &lt;&lt; " = " &lt;&lt; *ptr &lt;&lt; endl;
+        ptr++; // move pointer to next element
+    }
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Arrays and Function Arguments</h2>
+        <h3>
+            When an array is passed to a function, it decays into a pointer to its first element.  
+            So functions actually receive a pointer, not the whole array.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void printArray(int *p, int size) {
+    for(int i = 0; i &lt; size; i++) {
+        cout &lt;&lt; p[i] &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+}
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    printArray(arr, 5);  // array passed as pointer
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Pointer to an Array</h2>
+        <h3>
+            A pointer can also point to the entire array instead of just its first element.  
+            This uses the syntax <code>int (*ptr)[n]</code> for an array of size n.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[3] = {7, 8, 9};
+    int (*p)[3] = &arr;  // pointer to array of 3 ints
+
+    for(int i = 0; i &lt; 3; i++) {
+        cout &lt;&lt; (*p)[i] &lt;&lt; " ";
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>6. Multi-Dimensional Arrays and Pointers</h2>
+        <h3>
+            In multi-dimensional arrays, the array name acts as a pointer to the first row.  
+            We can use pointers to access elements in 2D arrays.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[2][3] = { {1,2,3}, {4,5,6} };
+    int (*p)[3] = arr;  // pointer to an array of 3 integers
+
+    for(int i = 0; i &lt; 2; i++) {
+        for(int j = 0; j &lt; 3; j++) {
+            cout &lt;&lt; *(*(p + i) + j) &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

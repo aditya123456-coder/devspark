@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Memory Allocation in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Dynamic Memory Allocation (new, delete)</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. Introduction</h2>
+        <h3>
+            In C++, memory can be allocated at runtime using the <b>new</b> operator 
+            and freed using the <b>delete</b> operator.  
+            This is called <b>dynamic memory allocation</b>.  
+            It allows creating variables, arrays, and objects when the program is running instead of fixed size at compile time.
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>2. Allocating a Single Variable</h2>
+        <h3>
+            We can allocate memory for a single variable using <code>new</code>.  
+            Memory is created on the <b>heap</b> and accessed through a pointer.  
+            Once done, memory should be released with <code>delete</code>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p = new int;  // dynamically allocate memory for int
+    *p = 42;
+    cout &lt;&lt; "Value stored: " &lt;&lt; *p &lt;&lt; endl;
+
+    delete p; // free memory
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Allocating an Array</h2>
+        <h3>
+            Using <code>new</code>, we can create arrays dynamically at runtime.  
+            Memory must be freed with <code>delete[]</code>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int size;
+    cout &lt;&lt; "Enter size of array: ";
+    cin &gt;&gt; size;
+
+    int *arr = new int[size];  // dynamic array
+
+    for(int i = 0; i &lt; size; i++) {
+        arr[i] = (i+1) * 10;
+    }
+
+    cout &lt;&lt; "Array elements: ";
+    for(int i = 0; i &lt; size; i++) {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+
+    delete[] arr; // free memory
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Dynamic Memory for 2D Arrays</h2>
+        <h3>
+            We can also create 2D arrays dynamically using pointers to pointers.  
+            Memory for each row is allocated separately.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int rows = 2, cols = 3;
+    int **matrix = new int*[rows];
+
+    for(int i = 0; i &lt; rows; i++) {
+        matrix[i] = new int[cols];
+    }
+
+    // Assign values
+    for(int i = 0; i &lt; rows; i++) {
+        for(int j = 0; j &lt; cols; j++) {
+            matrix[i][j] = (i+1) * (j+1);
+        }
+    }
+
+    // Print matrix
+    for(int i = 0; i &lt; rows; i++) {
+        for(int j = 0; j &lt; cols; j++) {
+            cout &lt;&lt; matrix[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+
+    // Free memory
+    for(int i = 0; i &lt; rows; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Dynamic Objects</h2>
+        <h3>
+            The <code>new</code> operator can also be used to create objects dynamically.  
+            After use, memory is freed using <code>delete</code>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Student {
+public:
+    string name;
+    Student(string n) { name = n; }
+    void display() { cout &lt;&lt; "Student: " &lt;&lt; name &lt;&lt; endl; }
+};
+
+int main() {
+    Student *s = new Student("Alice"); // dynamic object
+    s-&gt;display();
+
+    delete s; // free memory
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>6. Difference Between delete and delete[]</h2>
+        <h3>
+            <ul>
+                <li><code>delete</code> → Used to free memory of a single variable or object.</li>
+                <li><code>delete[]</code> → Used to free memory of an array.</li>
+            </ul>
+            Using the wrong form can cause memory leaks or program crashes.
+        </h3>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Basics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Introduction to C++</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. History of C++</h2>
+        <h3>
+            C++ was developed by <b>Bjarne Stroustrup</b> at Bell Laboratories in the early 1980s. 
+            Initially, it was called "C with Classes" as it extended the C language by adding object-oriented features. 
+            In 1983, it was renamed C++. The name signifies the increment operator (++) in C, meaning an improved or extended version of C.
+            C++ was standardized by ISO in 1998 (ISO/IEC 14882) and continues to evolve with new versions like C++11, C++14, C++17, C++20, and C++23.
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>2. Features of C++</h2>
+        <h3>
+            <ul>
+                <li><b>Object-Oriented:</b> Supports classes, objects, inheritance, polymorphism, and encapsulation.</li>
+                <li><b>Low-level Manipulation:</b> Like C, allows direct interaction with hardware and memory.</li>
+                <li><b>Rich Library:</b> Standard Template Library (STL) provides ready-to-use data structures and algorithms.</li>
+                <li><b>Portability:</b> Programs can be run on different systems with little or no modification.</li>
+                <li><b>Fast and Efficient:</b> Closer to hardware, making execution faster compared to many other high-level languages.</li>
+                <li><b>Multi-paradigm:</b> Supports both procedural and object-oriented programming.</li>
+            </ul>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>3. Difference between C and C++</h2>
+        <h3>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <tr>
+                    <th>C</th>
+                    <th>C++</th>
+                </tr>
+                <tr>
+                    <td>Procedural programming language.</td>
+                    <td>Object-oriented programming language.</td>
+                </tr>
+                <tr>
+                    <td>No concept of classes and objects.</td>
+                    <td>Supports classes, objects, inheritance, polymorphism, encapsulation.</td>
+                </tr>
+                <tr>
+                    <td>Focuses on functions and structured programming.</td>
+                    <td>Focuses on objects and data abstraction.</td>
+                </tr>
+                <tr>
+                    <td>Less secure (global data can be accessed easily).</td>
+                    <td>More secure (data hiding and access specifiers).</td>
+                </tr>
+                <tr>
+                    <td>Developed by Dennis Ritchie in 1972.</td>
+                    <td>Developed by Bjarne Stroustrup in 1983.</td>
+                </tr>
+            </table>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>4. Structure of a C++ Program</h2>
+        <h3>
+            A basic C++ program consists of:
+            <ul>
+                <li><b>Header files:</b> Provide access to input/output and other functionalities.</li>
+                <li><b>main() function:</b> The entry point of every C++ program.</li>
+                <li><b>Statements and expressions:</b> The body of the program.</li>
+            </ul>
+        </h3>
+        <pre>
+            <code>
+#include &lt;iostream&gt;  // Header file for input and output
+using namespace std;  // To avoid writing std:: repeatedly
+
+int main() {
+    cout &lt;&lt; "Hello, World!";  // Output statement
+    return 0;                  // Exit status
+}
+            </code>
+        </pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Compile and Run Process</h2>
+        <h3>
+            The steps to compile and run a C++ program are:
+            <ol>
+                <li><b>Write the program:</b> Save the code in a file with extension <code>.cpp</code>.</li>
+                <li><b>Compile:</b> Use a compiler (e.g., g++ in GCC) to convert the source code into object code.
+                    <br>Command: <code>g++ program.cpp -o program</code></li>
+                <li><b>Linking:</b> The compiler links libraries with the object code to create an executable file.</li>
+                <li><b>Run:</b> Execute the output file.
+                    <br>Command: <code>./program</code></li>
+            </ol>
+        </h3>
+    </div>
+
+</body>
+
+</html>

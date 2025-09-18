@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointer Arithmetic in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Pointer Arithmetic</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. Introduction to Pointer Arithmetic</h2>
+        <h3>
+            Pointer arithmetic means performing mathematical operations on pointers.  
+            Since pointers store memory addresses, arithmetic is done in units of the data type size.  
+            For example, incrementing an <code>int*</code> increases its value by <code>sizeof(int)</code>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[3] = {10, 20, 30};
+    int *p = arr;
+
+    cout &lt;&lt; "Address in p: " &lt;&lt; p &lt;&lt; endl;
+    p++; // moves to next integer
+    cout &lt;&lt; "After increment, p: " &lt;&lt; p &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Pointer Increment (++)</h2>
+        <h3>
+            Incrementing a pointer makes it point to the next element in memory.  
+            The step size depends on the data type (for int it moves 4 bytes, for double it moves 8 bytes).
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[3] = {100, 200, 300};
+    int *ptr = numbers;
+
+    cout &lt;&lt; "First element: " &lt;&lt; *ptr &lt;&lt; endl;
+    ptr++;  // move to next element
+    cout &lt;&lt; "Second element: " &lt;&lt; *ptr &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Pointer Decrement (--)</h2>
+        <h3>
+            Decrementing a pointer moves it to the previous element in memory.  
+            This is useful when traversing arrays backwards.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[3] = {5, 10, 15};
+    int *p = &arr[2]; // points to last element
+
+    cout &lt;&lt; "Last element: " &lt;&lt; *p &lt;&lt; endl;
+    p--; // move to previous element
+    cout &lt;&lt; "Second element: " &lt;&lt; *p &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Adding and Subtracting Integers</h2>
+        <h3>
+            You can add or subtract an integer to a pointer.  
+            <code>ptr + n</code> moves the pointer forward by <code>n</code> elements,  
+            <code>ptr - n</code> moves it backward by <code>n</code> elements.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5};
+    int *p = arr;
+
+    cout &lt;&lt; "First element: " &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; "Third element: " &lt;&lt; *(p + 2) &lt;&lt; endl;
+    cout &lt;&lt; "Last element: " &lt;&lt; *(p + 4) &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Subtracting Pointers</h2>
+        <h3>
+            When two pointers point to elements of the same array,  
+            subtracting them gives the number of elements between them.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    int *p1 = &arr[1];
+    int *p2 = &arr[4];
+
+    cout &lt;&lt; "p2 - p1 = " &lt;&lt; (p2 - p1); // gives 3 elements apart
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>6. Pointer Comparison</h2>
+        <h3>
+            Pointers can be compared using relational operators like <code>&lt;</code>, <code>&gt;</code>, <code>==</code>.  
+            This is commonly used in loops to traverse arrays using pointers.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[4] = {11, 22, 33, 44};
+    int *start = arr;
+    int *end = arr + 4;
+
+    while(start &lt; end) {
+        cout &lt;&lt; *start &lt;&lt; " ";
+        start++;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Making in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Decision Making Statements</h1>
+    </div>
+
+    <div class="div">
+        <h2>if Statement</h2>
+        <h3>
+            Theory: The <code>if</code> statement executes a block of code only when its condition evaluates to true.  
+            If the condition is false, the block is skipped.  
+        </h3>
+        <pre><code>
+// if statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int age = 20;
+    if (age &gt;= 18) {
+        cout &lt;&lt; "You are eligible to vote." &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>if-else Statement</h2>
+        <h3>
+            Theory: The <code>if-else</code> provides two paths: one executes if the condition is true, and the other if it is false.  
+        </h3>
+        <pre><code>
+// if-else statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int number;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; number;
+
+    if (number % 2 == 0) {
+        cout &lt;&lt; number &lt;&lt; " is Even" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; number &lt;&lt; " is Odd" &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>else-if Ladder</h2>
+        <h3>
+            Theory: The <code>else-if ladder</code> allows checking multiple conditions one after another.  
+            The first condition that evaluates true executes its block, and the rest are skipped.  
+        </h3>
+        <pre><code>
+// else-if ladder - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int marks;
+    cout &lt;&lt; "Enter marks: ";
+    cin &gt;&gt; marks;
+
+    if (marks &gt;= 90) {
+        cout &lt;&lt; "Grade A" &lt;&lt; endl;
+    } else if (marks &gt;= 75) {
+        cout &lt;&lt; "Grade B" &lt;&lt; endl;
+    } else if (marks &gt;= 50) {
+        cout &lt;&lt; "Grade C" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "Fail" &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Nested if Statement</h2>
+        <h3>
+            Theory: A <code>nested if</code> means an <code>if</code> statement inside another <code>if</code>.  
+            This is used when a condition depends on another condition.  
+        </h3>
+        <pre><code>
+// nested if statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int age = 25;
+    char citizen = 'Y'; // Y = yes, N = no
+
+    if (age &gt;= 18) {
+        if (citizen == 'Y') {
+            cout &lt;&lt; "You can vote in national elections." &lt;&lt; endl;
+        } else {
+            cout &lt;&lt; "You are old enough, but not a citizen." &lt;&lt; endl;
+        }
+    } else {
+        cout &lt;&lt; "You are not old enough to vote." &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>switch-case Statement</h2>
+        <h3>
+            Theory: The <code>switch-case</code> selects one block to execute from multiple options, based on the value of an expression.  
+            Each <code>case</code> represents a possible value. The <code>break</code> statement prevents fall-through to the next case.  
+        </h3>
+        <pre><code>
+// switch-case statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int day;
+    cout &lt;&lt; "Enter day number (1-7): ";
+    cin &gt;&gt; day;
+
+    switch(day) {
+        case 1: cout &lt;&lt; "Monday" &lt;&lt; endl; break;
+        case 2: cout &lt;&lt; "Tuesday" &lt;&lt; endl; break;
+        case 3: cout &lt;&lt; "Wednesday" &lt;&lt; endl; break;
+        case 4: cout &lt;&lt; "Thursday" &lt;&lt; endl; break;
+        case 5: cout &lt;&lt; "Friday" &lt;&lt; endl; break;
+        case 6: cout &lt;&lt; "Saturday" &lt;&lt; endl; break;
+        case 7: cout &lt;&lt; "Sunday" &lt;&lt; endl; break;
+        default: cout &lt;&lt; "Invalid day" &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Notes</h2>
+        <h3>
+            - Always use <code>break</code> in switch-case unless fall-through is desired.<br>
+            - Prefer <code>if-else</code> when dealing with ranges; use <code>switch</code> for fixed constant values.<br>
+            - Nesting too many <code>if</code> conditions can reduce readability; consider logical operators or restructuring.<br>
+        </h3>
+    </div>
+</body>
+</html>

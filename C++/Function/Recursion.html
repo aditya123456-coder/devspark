@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursion in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Recursion</h1>
+    </div>
+
+    <div class="div">
+        <h2>Concept</h2>
+        <h3>
+            - <b>Recursion</b> is a technique where a function calls itself directly or indirectly. <br>
+            - It breaks a large problem into smaller subproblems of the same type. <br>
+            - Every recursive function must have a <b>base case</b> (termination condition) to avoid infinite calls. <br>
+            - Recursive functions use the <b>function call stack</b> to keep track of pending calls.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Basic Example: Factorial</h2>
+        <pre><code>
+// recursion - factorial
+#include &lt;iostream&gt;
+using namespace std;
+
+int factorial(int n) {
+    if (n == 0 || n == 1)   // base case
+        return 1;
+    return n * factorial(n - 1); // recursive case
+}
+
+int main() {
+    int num = 5;
+    cout &lt;&lt; "Factorial of " &lt;&lt; num &lt;&lt; " = " &lt;&lt; factorial(num) &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Types of Recursion</h2>
+        <h3>
+            1. <b>Direct Recursion:</b> Function calls itself directly. <br>
+            2. <b>Indirect Recursion:</b> Function A calls Function B, and Function B calls Function A. <br>
+            3. <b>Tail Recursion:</b> Recursive call is the last statement in the function. <br>
+            4. <b>Non-Tail Recursion:</b> Recursive call is followed by other operations.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Example: Fibonacci (Direct Recursion)</h2>
+        <pre><code>
+// recursion - fibonacci series
+#include &lt;iostream&gt;
+using namespace std;
+
+int fibonacci(int n) {
+    if (n == 0) return 0;   // base case
+    if (n == 1) return 1;   // base case
+    return fibonacci(n - 1) + fibonacci(n - 2); // recursive case
+}
+
+int main() {
+    int n = 6;
+    cout &lt;&lt; "Fibonacci(" &lt;&lt; n &lt;&lt; ") = " &lt;&lt; fibonacci(n) &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: Indirect Recursion</h2>
+        <pre><code>
+// indirect recursion example
+#include &lt;iostream&gt;
+using namespace std;
+
+void funcA(int n);
+
+void funcB(int n) {
+    if (n &gt; 0) {
+        cout &lt;&lt; "B: " &lt;&lt; n &lt;&lt; endl;
+        funcA(n - 1);
+    }
+}
+
+void funcA(int n) {
+    if (n &gt; 0) {
+        cout &lt;&lt; "A: " &lt;&lt; n &lt;&lt; endl;
+        funcB(n / 2);
+    }
+}
+
+int main() {
+    funcA(5);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: Tail Recursion</h2>
+        <pre><code>
+// tail recursion - factorial
+#include &lt;iostream&gt;
+using namespace std;
+
+int factorial_tail(int n, int result = 1) {
+    if (n == 0) return result; // base case
+    return factorial_tail(n - 1, n * result); // recursive call is last
+}
+
+int main() {
+    cout &lt;&lt; "Factorial(5) = " &lt;&lt; factorial_tail(5) &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Recursive vs Iterative</h2>
+        <h3>
+            - <b>Recursive solutions</b> are often shorter, clearer, and closer to mathematical definitions. <br>
+            - <b>Iterative solutions</b> are usually faster and use less memory since recursion consumes stack space. <br>
+            - Use recursion when the problem is naturally recursive (e.g., trees, divide-and-conquer algorithms).  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Advantages</h2>
+        <h3>
+            - Code becomes cleaner and easier to understand. <br>
+            - Useful for problems that can be divided into similar subproblems (e.g., factorial, Fibonacci, Tower of Hanoi, tree traversals).  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Disadvantages</h2>
+        <h3>
+            - Uses more memory (stack frames for each call). <br>
+            - Slower than iteration due to function call overhead. <br>
+            - Risk of stack overflow if recursion depth is too large or base case is missing.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Best Practices</h2>
+        <h3>
+            - Always define a clear <b>base case</b> to stop recursion. <br>
+            - Use recursion for problems naturally expressed recursively. <br>
+            - For performance-critical programs, prefer iteration unless recursion provides significant clarity. <br>
+            - For deep recursion, consider converting to iterative solutions or using tail recursion optimizations.  
+        </h3>
+    </div>
+</body>
+</html>

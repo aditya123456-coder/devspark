@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Parameters in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Function Parameters (Actual and Formal)</h1>
+    </div>
+
+    <div class="div">
+        <h2>Concept</h2>
+        <h3>
+            Parameters are variables used to pass values into functions.  
+            - <b>Actual Parameters</b>: The values or variables given in the function call.  
+            - <b>Formal Parameters</b>: The variables defined in the function header that receive the values.  
+            Actual parameters are copied into formal parameters when the function is called (depending on calling method).  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Actual Parameters</h2>
+        <h3>
+            These are the arguments/values that are passed <b>while calling</b> the function.  
+            They exist in the calling function (like <code>main()</code>).  
+        </h3>
+        <pre><code>
+// Example of Actual Parameters
+#include &lt;iostream&gt;
+using namespace std;
+
+void show(int x) {
+    cout &lt;&lt; "Value = " &lt;&lt; x &lt;&lt; endl;
+}
+
+int main() {
+    int n = 10;
+    show(n);  // here 'n' is an actual parameter
+    show(25); // here '25' is an actual parameter
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Formal Parameters</h2>
+        <h3>
+            These are the variables declared in the function definition that receive the values  
+            from actual parameters when the function is called.  
+        </h3>
+        <pre><code>
+// Example of Formal Parameters
+#include &lt;iostream&gt;
+using namespace std;
+
+// 'a' and 'b' are formal parameters
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int x = 5, y = 7;
+    int result = add(x, y); // x and y are actual parameters
+    cout &lt;&lt; "Sum = " &lt;&lt; result &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Key Points</h2>
+        <h3>
+            - Actual parameters exist at the place where the function is called.  
+            - Formal parameters exist inside the function definition.  
+            - Number, type, and order of actual and formal parameters must match.  
+            - Actual parameters transfer their values to formal parameters when the function is invoked.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Illustration</h2>
+        <h3>
+            Example showing relation between actual and formal parameters.  
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+// formal parameters a, b
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int main() {
+    int p = 4, q = 6;
+    // actual parameters p, q
+    int ans = multiply(p, q);
+    cout &lt;&lt; "Product = " &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Notes</h2>
+        <h3>
+            - Actual parameters are in the calling function; formal parameters are in the called function.  
+            - Changing a formal parameter does not normally change the actual parameter (unless using references/pointers).  
+            - This difference becomes important when studying <b>Call by Value</b> and <b>Call by Reference</b>.  
+        </h3>
+    </div>
+</body>
+</html>

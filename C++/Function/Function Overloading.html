@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Overloading in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Function Overloading</h1>
+    </div>
+
+    <div class="div">
+        <h2>Concept</h2>
+        <h3>
+            - <b>Function overloading</b> allows multiple functions in the same scope to have the same name but different parameter lists. <br>
+            - The compiler determines which version to call based on the number and types of arguments. <br>
+            - It improves readability by using the same function name for similar operations.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Basic Example</h2>
+        <pre><code>
+// function overloading example
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+double add(double a, double b) {
+    return a + b;
+}
+
+string add(string a, string b) {
+    return a + b;
+}
+
+int main() {
+    cout &lt;&lt; add(2, 3) &lt;&lt; endl;         // calls int version
+    cout &lt;&lt; add(2.5, 3.1) &lt;&lt; endl;     // calls double version
+    cout &lt;&lt; add("Hello ", "World") &lt;&lt; endl; // calls string version
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>How Compiler Resolves Overloading</h2>
+        <h3>
+            - Compiler matches the function call with the correct function definition using: <br>
+            1. Number of arguments. <br>
+            2. Types of arguments. <br>
+            3. Order of arguments. <br>
+            - If more than one match is possible, the compiler selects the best match; otherwise, it gives an ambiguity error.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Example with Different Number of Parameters</h2>
+        <pre><code>
+// overloaded by number of parameters
+#include &lt;iostream&gt;
+using namespace std;
+
+void print(int a) {
+    cout &lt;&lt; "Integer: " &lt;&lt; a &lt;&lt; endl;
+}
+
+void print(int a, int b) {
+    cout &lt;&lt; "Two Integers: " &lt;&lt; a &lt;&lt; ", " &lt;&lt; b &lt;&lt; endl;
+}
+
+int main() {
+    print(5);       // calls first version
+    print(10, 20);  // calls second version
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example with Different Types of Parameters</h2>
+        <pre><code>
+// overloaded by types of parameters
+#include &lt;iostream&gt;
+using namespace std;
+
+void display(int a) {
+    cout &lt;&lt; "Integer: " &lt;&lt; a &lt;&lt; endl;
+}
+
+void display(double b) {
+    cout &lt;&lt; "Double: " &lt;&lt; b &lt;&lt; endl;
+}
+
+int main() {
+    display(5);     // calls int version
+    display(3.14);  // calls double version
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Overloading with Default Arguments</h2>
+        <h3>
+            - Function overloading and default arguments can conflict. <br>
+            - If both are used incorrectly, the compiler may report ambiguity.  
+        </h3>
+        <pre><code>
+// overloading with default arguments
+#include &lt;iostream&gt;
+using namespace std;
+
+void greet(string name = "User") {
+    cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; endl;
+}
+
+void greet(string first, string last) {
+    cout &lt;&lt; "Hello, " &lt;&lt; first &lt;&lt; " " &lt;&lt; last &lt;&lt; endl;
+}
+
+int main() {
+    greet();                 // uses default argument version
+    greet("Aditya");         // also matches default → may cause ambiguity
+    greet("Aditya", "Patil");// calls two-parameter version
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Rules & Restrictions</h2>
+        <h3>
+            - Overloading is only based on parameter list (number, type, order). <br>
+            - Return type alone cannot distinguish overloaded functions. <br>
+            - Ambiguity occurs if the compiler cannot decide the best match. <br>
+            - Works with built-in and user-defined types (classes, structs).  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Best Practices</h2>
+        <h3>
+            - Use overloading for logically similar operations with different data types. <br>
+            - Avoid confusing overloads that can cause ambiguity. <br>
+            - For generic cases, prefer <code>function templates</code> (modern C++). <br>
+            - Keep parameter names meaningful for readability.  
+        </h3>
+    </div>
+</body>
+</html>

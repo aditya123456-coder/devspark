@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Handling in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>String Handling</h1>
+    </div>
+
+    <div class="div">
+        <h2>Definition</h2>
+        <h3>
+            Strings are sequences of characters used to represent text in C++. <br>
+            They can be handled in two ways: <br>
+            1. Using <b>character arrays</b> (C-style strings). <br>
+            2. Using the C++ <b>string class</b> from the Standard Template Library (STL).
+        </h3>
+    </div>
+
+    <!-- Character Array Section -->
+    <div class="div">
+        <h2>String Handling using Character Array (C-Style)</h2>
+        <h3>
+            A character array is a collection of characters terminated by a null character <code>'\0'</code>.
+            <br>
+            These are often used in older C-style programs.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;  // For string handling functions
+using namespace std;
+
+int main() {
+    char str1[20] = "Hello";
+    char str2[20] = "World";
+
+    cout &lt;&lt; "String 1: " &lt;&lt; str1 &lt;&lt; endl;
+    cout &lt;&lt; "String 2: " &lt;&lt; str2 &lt;&lt; endl;
+
+    // String concatenation
+    strcat(str1, str2);
+    cout &lt;&lt; "Concatenated: " &lt;&lt; str1 &lt;&lt; endl;
+
+    // String length
+    cout &lt;&lt; "Length of str1: " &lt;&lt; strlen(str1) &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Common String Functions (Character Arrays)</h2>
+        <h3>
+            1. <code>strlen(str)</code> → Returns length of string. <br>
+            2. <code>strcpy(dest, src)</code> → Copies string. <br>
+            3. <code>strcat(str1, str2)</code> → Concatenates two strings. <br>
+            4. <code>strcmp(str1, str2)</code> → Compares two strings. <br>
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char a[20] = "C++";
+    char b[20];
+
+    strcpy(b, a);  // Copy string
+    cout &lt;&lt; "Copied String: " &lt;&lt; b &lt;&lt; endl;
+
+    cout &lt;&lt; "Length of a: " &lt;&lt; strlen(a) &lt;&lt; endl;
+
+    if (strcmp(a, b) == 0)
+        cout &lt;&lt; "Strings are equal" &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <!-- String Class Section -->
+    <div class="div">
+        <h2>String Handling using String Class</h2>
+        <h3>
+            C++ provides the <code>string</code> class (in &lt;string&gt; header), which makes string handling easier and safer than character arrays.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string str1 = "Hello";
+    string str2 = "World";
+
+    cout &lt;&lt; "String 1: " &lt;&lt; str1 &lt;&lt; endl;
+    cout &lt;&lt; "String 2: " &lt;&lt; str2 &lt;&lt; endl;
+
+    // Concatenation
+    string result = str1 + " " + str2;
+    cout &lt;&lt; "Concatenated: " &lt;&lt; result &lt;&lt; endl;
+
+    // Length
+    cout &lt;&lt; "Length of str1: " &lt;&lt; str1.length() &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Common String Class Functions</h2>
+        <h3>
+            1. <code>length()</code> → Returns length of string. <br>
+            2. <code>append(str)</code> → Appends another string. <br>
+            3. <code>insert(pos, str)</code> → Inserts string at given position. <br>
+            4. <code>erase(pos, len)</code> → Erases part of string. <br>
+            5. <code>find(str)</code> → Finds substring. <br>
+            6. <code>substr(pos, len)</code> → Extracts substring. <br>
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string text = "Programming in C++";
+
+    cout &lt;&lt; "Length: " &lt;&lt; text.length() &lt;&lt; endl;
+
+    text.append(" is fun!");
+    cout &lt;&lt; "Appended: " &lt;&lt; text &lt;&lt; endl;
+
+    cout &lt;&lt; "Substring: " &lt;&lt; text.substr(0, 11) &lt;&lt; endl;
+
+    size_t pos = text.find("C++");
+    if (pos != string::npos)
+        cout &lt;&lt; "Found C++ at position " &lt;&lt; pos &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Key Points</h2>
+        <h3>
+            1. Character arrays (C-style strings) are older and less safe. <br>
+            2. String class in C++ is easier, safer, and provides powerful functions. <br>
+            3. Both methods allow string operations like copying, concatenation, comparison, and searching. <br>
+            4. Prefer using <code>string</code> class for modern C++ programs. <br>
+        </h3>
+    </div>
+
+</body>
+</html>

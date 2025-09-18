@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Dimensional Arrays in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Two-Dimensional Arrays</h1>
+    </div>
+
+    <div class="div">
+        <h2>Definition</h2>
+        <h3>
+            A two-dimensional array is an array of arrays. It is used to store data in rows and columns, similar
+            to a matrix or table. Each element is accessed using two indices: row index and column index.
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Declaration of Two-Dimensional Array</h2>
+        <h3>
+            Arrays are declared by specifying the data type, array name, and dimensions (rows × columns).
+            <br><br>
+            <b>Syntax:</b> <br>
+            <code>data_type array_name[rows][columns];</code>
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matrix[3][3];  // Declaration of 3x3 integer array
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Initialization of Two-Dimensional Array</h2>
+        <h3>
+            Arrays can be initialized during declaration or later by assigning values to each index.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Initialization at declaration
+    int matrix[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    // Another way
+    int table[2][2];
+    table[0][0] = 10;
+    table[0][1] = 20;
+    table[1][0] = 30;
+    table[1][1] = 40;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Accessing Elements of Two-Dimensional Array</h2>
+        <h3>
+            Elements are accessed using two indices: one for row and one for column.
+            Indexing starts from 0 for both rows and columns.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matrix[2][2] = {{10, 20}, {30, 40}};
+
+    cout &lt;&lt; "Element at (0,0): " &lt;&lt; matrix[0][0] &lt;&lt; endl;
+    cout &lt;&lt; "Element at (1,1): " &lt;&lt; matrix[1][1] &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Traversing a Two-Dimensional Array</h2>
+        <h3>
+            Nested loops are used to traverse a two-dimensional array, where the outer loop iterates through rows 
+            and the inner loop iterates through columns.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matrix[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    cout &lt;&lt; "Matrix elements: " &lt;&lt; endl;
+    for (int i = 0; i &lt; 2; i++) {
+        for (int j = 0; j &lt; 3; j++) {
+            cout &lt;&lt; matrix[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: Sum of Matrix Elements</h2>
+        <h3>
+            This program calculates the sum of all elements of a two-dimensional array.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matrix[2][2] = {{10, 20}, {30, 40}};
+    int sum = 0;
+
+    for (int i = 0; i &lt; 2; i++) {
+        for (int j = 0; j &lt; 2; j++) {
+            sum += matrix[i][j];
+        }
+    }
+
+    cout &lt;&lt; "Sum of matrix elements = " &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: Transpose of a Matrix</h2>
+        <h3>
+            Transpose of a matrix is obtained by interchanging rows and columns.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matrix[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    cout &lt;&lt; "Transpose of matrix: " &lt;&lt; endl;
+    for (int j = 0; j &lt; 3; j++) {
+        for (int i = 0; i &lt; 2; i++) {
+            cout &lt;&lt; matrix[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Key Points</h2>
+        <h3>
+            1. A two-dimensional array is like a table with rows and columns. <br>
+            2. Each element is accessed with two indices. <br>
+            3. Nested loops are used to traverse two-dimensional arrays. <br>
+            4. Commonly used for matrices, tables, and grid-based problems. <br>
+            5. Size of rows and columns must be defined at compile time (for static arrays).
+        </h3>
+    </div>
+
+</body>
+</html>

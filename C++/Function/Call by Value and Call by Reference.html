@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call by Value and Call by Reference - C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Call by Value &amp; Call by Reference (Detailed)</h1>
+    </div>
+
+    <div class="div">
+        <h2>Overview / Concept</h2>
+        <h3>
+            When you call a function you pass arguments. How those arguments are passed affects whether the called function can change the caller's variables,
+            the number of copies made and the runtime cost. Two primary mechanisms in C++ are:
+            <ul>
+                <li><b>Call by Value:</b> The function receives copies of the argument values. Modifying parameters inside the function does <i>not</i> affect the originals.</li>
+                <li><b>Call by Reference:</b> The function receives references (aliases) to the original variables. Modifying parameters inside the function <i>does</i> change the originals.</li>
+            </ul>
+            C++ also provides pointers and rvalue references; these are related techniques with different syntax and semantics — examples below.
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Call by Value (Theory)</h2>
+        <h3>
+            - The called function gets its own copy of each argument (for primitive types and objects).<br>
+            - For built-in types (int, double) copying is cheap; for large user-defined objects copying can be expensive (invokes copy constructor).<br>
+            - Use when the function should not modify the caller's variable, or the cost of copying is small or intended.
+        </h3>
+
+        <pre><code>
+// call-by-value - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+void increment_by_value(int x) {
+    x = x + 1;
+    cout &lt;&lt; "Inside function (by value): x = " &lt;&lt; x &lt;&lt; endl;
+}
+
+int main() {
+    int a = 5;
+    increment_by_value(a);           // passes a copy
+    cout &lt;&lt; "After call: a = " &lt;&lt; a &lt;&lt; endl; // a remains 5
+    return 0;
+}
+
+/* Expected output:
+Inside function (by value): x = 6
+After call: a = 5
+*/
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Call by Reference (Theory)</h2>
+        <h3>
+            - C++ references provide aliasing: a reference parameter binds to the caller's variable and refers to the same object.<br>
+            - Syntax uses <code>&</code> in the parameter: <code>void f(int &x)</code>.<br>
+            - Modifying a reference parameter modifies the original. No copy is made (efficient for large objects).<br>
+            - References must be initialized and cannot be reseated to reference another object. They cannot be null (unlike pointers).
+        </h3>
+
+        <pre><code>
+// call-by-reference using C++ references
+#include &lt;iostream&gt;
+using namespace std;
+
+void increment_by_ref(int &x) {
+    x = x + 1;
+    cout &lt;&lt; "Inside function (by ref): x = " &lt;&lt; x &lt;&lt; endl;
+}
+
+int main() {
+    int a = 5;
+    increment_by_ref(a);            // passes by reference
+    cout &lt;&lt; "After call: a = " &lt;&lt; a &lt;&lt; endl; // a changed to 6
+    return 0;
+}
+
+/* Expected output:
+Inside function (by ref): x = 6
+After call: a = 6
+*/
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Call by Pointer (Related)</h2>
+        <h3>
+            - Passing a pointer passes the pointer by value (the pointer itself is copied), but through the pointer you can modify the pointee.<br>
+            - Use pointers when you want to allow null or reassign the pointer in caller (by passing pointer by reference). Pointers can be null; references cannot.
+        </h3>
+
+        <pre><code>
+// call-by-pointer - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+void increment_by_ptr(int *p) {
+    if (p) {
+        (*p)++;
+        cout &lt;&lt; "Inside (by ptr): *p = " &lt;&lt; *p &lt;&lt; endl;
+    }
+}
+
+int main() {
+    int a = 5;
+    increment_by_ptr(&amp;a);    // pass address of a
+    cout &lt;&lt; "After call: a = " &lt;&lt; a &lt;&lt; endl; // a changed to 6
+
+    increment_by_ptr(nullptr);  // safe guard inside function prevents crash
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: swap() using reference vs pointer</h2>
+        <h3>
+            Swap using references is cleaner. Pointer version requires addresses.
+        </h3>
+
+        <pre><code>
+// swap using references
+#include &lt;iostream&gt;
+using namespace std;
+
+void swap_ref(int &x, int &y) {
+    int t = x; x = y; y = t;
+}
+
+void swap_ptr(int *x, int *y) {
+    int t = *x; *x = *y; *y = t;
+}
+
+int main() {
+    int a = 2, b = 3;
+    swap_ref(a, b);  // usage: swap_ref(a, b);
+    cout &lt;&lt; "After swap_ref: a = " &lt;&lt; a &lt;&lt; ", b = " &lt;&lt; b &lt;&lt; endl;
+
+    int c = 4, d = 5;
+    swap_ptr(&amp;c, &amp;d); // usage: swap_ptr(&c, &d);
+    cout &lt;&lt; "After swap_ptr: c = " &lt;&lt; c &lt;&lt; ", d = " &lt;&lt; d &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Actual vs Formal Parameters (Reminder)</h2>
+        <h3>
+            - <b>Actual (argument)</b>: value or variable you pass at the call site.<br>
+            - <b>Formal (parameter)</b>: the variable in the function signature which receives the value/reference.
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Const References &amp; Lifetime Extension</h2>
+        <h3>
+            - Use <code>const T&amp;</code> to accept an object by reference without allowing modification. This avoids copying and preserves safety.<br>
+            - Binding a temporary to a <b>const reference</b> extends the temporary's lifetime to match the reference's lifetime (useful when passing function return values).
+        </h3>
+
+        <pre><code>
+// const reference and lifetime extension
+#include &lt;iostream&gt;
+using namespace std;
+
+int make_value() { return 42; }
+
+void print_const_ref(const int &r) {
+    cout &lt;&lt; "Received by const ref: " &lt;&lt; r &lt;&lt; endl;
+}
+
+int main() {
+    print_const_ref(make_value()); // temporary returned by make_value() binds to const ref
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Objects, Copies and Performance</h2>
+        <h3>
+            - Passing user-defined types by value invokes the copy constructor (costly if object is large).<br>
+            - Prefer <code>const T&amp;</code> to avoid copying when you only need read-only access.<br>
+            - If the function needs ownership / modify a copy, pass by value and use <code>std::move</code> internally (the copy can be elided or moved).
+        </h3>
+
+        <pre><code>
+// Demonstrating copy vs const-reference vs move
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+struct Big {
+    string name;
+    Big(const string &s) : name(s) { cout &lt;&lt; "ctor " &lt;&lt; name &lt;&lt; endl; }
+    Big(const Big &other) : name(other.name) { cout &lt;&lt; "copy ctor " &lt;&lt; name &lt;&lt; endl; }
+    Big(Big &amp;&amp;other) noexcept : name(move(other.name)) { cout &lt;&lt; "move ctor " &lt;&lt; name &lt;&lt; endl; }
+    ~Big() { cout &lt;&lt; "dtor " &lt;&lt; name &lt;&lt; endl; }
+};
+
+void by_value(Big b) { cout &lt;&lt; "in by_value" &lt;&lt; endl; }               // copies or moves into b
+void by_const_ref(const Big &b) { cout &lt;&lt; "in by_const_ref" &lt;&lt; endl; } // no copy
+void by_rvalue_ref(Big &amp;&amp;b) { cout &lt;&lt; "in by_rvalue_ref" &lt;&lt; endl; } // binds to rvalues
+
+int main() {
+    Big a("A");
+    cout &lt;&lt; "Call by value (expects copy):" &lt;&lt; endl;
+    by_value(a);            // invokes copy ctor
+
+    cout &lt;&lt; "Call by const ref (no copy):" &lt;&lt; endl;
+    by_const_ref(a);        // no copy
+
+    cout &lt;&lt; "Call by rvalue ref (move possible):" &lt;&lt; endl;
+    by_rvalue_ref(Big("temp")); // temporary bound to rvalue ref; may invoke move
+
+    cout &lt;&lt; "Call by value with move:" &lt;&lt; endl;
+    by_value(move(a));      // move into parameter b (no copy if move ctor exists)
+    return 0;
+}
+
+/* Notes:
+ - Actual output varies because modern compilers perform copy elision and may omit copies.
+ - Move constructor reduces cost compared to deep copy.
+*/
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Passing Arrays</h2>
+        <h3>
+            - Arrays decay to pointers when passed to functions (<code>int arr[]</code> becomes <code>int*</code>). The function can modify the original array elements.<br>
+            - To preserve size information, pass a <code>std::array</code> or <code>std::vector</code> by reference.
+        </h3>
+
+        <pre><code>
+// Passing arrays (decay to pointer)
+#include &lt;iostream&gt;
+using namespace std;
+
+void zero_first(int arr[], int n) { // arr is actually int*
+    if (n &gt; 0) arr[0] = 0;        // modifies caller's array
+}
+
+int main() {
+    int a[3] = {1,2,3};
+    zero_first(a, 3);
+    cout &lt;&lt; a[0] &lt;&lt; endl; // prints 0
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Pointer-to-Pointer &amp; Passing Pointer by Reference</h2>
+        <h3>
+            - If you want a function to change the caller's pointer (make it point somewhere else or set to null), either pass pointer by reference (<code>int*&</code>) or pass pointer to pointer (<code>int**</code>).
+        </h3>
+
+        <pre><code>
+// Changing caller's pointer using pointer-by-value (doesn't change caller) vs pointer-by-ref
+#include &lt;iostream&gt;
+using namespace std;
+
+void set_null_by_value(int *p) { // only local copy of pointer
+    p = nullptr;
+}
+
+void set_null_by_ref(int *&p) { // reference to pointer; affects caller
+    p = nullptr;
+}
+
+int main() {
+    int x = 10;
+    int *p = &amp;x;
+    set_null_by_value(p);
+    cout &lt;&lt; "After set_null_by_value: p = " &lt;&lt; p &lt;&lt; endl; // still points to x
+
+    set_null_by_ref(p);
+    cout &lt;&lt; "After set_null_by_ref: p = " &lt;&lt; p &lt;&lt; endl; // now nullptr
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Pitfalls &amp; Important Notes</h2>
+        <h3>
+            <ul>
+                <li><b>Dangling references</b>: Do NOT return a reference to a local variable — it becomes invalid (undefined behavior). Example: <code>int&amp; f(){ int x=5; return x; }</code> is UB.</li>
+                <li><b>References cannot be null</b>: Unlike pointers, references must refer to a valid object (except via some hacks). Use pointers if nullability is required.</li>
+                <li><b>Reseating:</b> References cannot be reseated to refer to another object. Pointers can be reassigned.</li>
+                <li><b>Copy cost:</b> Passing large objects by value can be expensive (copy ctor invoked). Prefer <code>const T&amp;</code> unless you need a copy.</li>
+                <li><b>Temporary lifetime:</b> Binding a temporary to <code>const T&amp;</code> extends the temporary lifetime; binding to non-const reference to temporary is not allowed.</li>
+                <li><b>Undefined / unspecified behavior:</b> Avoid modifying the same variable multiple times in an expression (not directly about calling convention, but relevant to side-effects).</li>
+                <li><b>Copy elision / NRVO:</b> Modern compilers may elide copies (optimize away temporaries). This affects observable copy/move constructor calls.</li>
+            </ul>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>When to use Which</h2>
+        <h3>
+            <ul>
+                <li><b>Small built-ins (int, double, char):</b> pass by value (cheap).</li>
+                <li><b>Large objects (std::string, containers, user types):</b> pass by <code>const T&amp;</code> if you only need read access; pass by <code>T&amp;</code> if you need to modify caller's object.</li>
+                <li><b>If null allowed or optional parameter:</b> use pointers (or std::optional&lt;T&gt;).</li>
+                <li><b>If you want to transfer ownership or avoid copies:</b> consider passing by value and use <code>std::move</code> inside, or accept <code>T&amp;&amp;</code> (rvalue ref) for overloads.</li>
+                <li><b>APIs:</b> prefer <code>const T&amp;</code> in public interfaces for heavy types when mutation is not required.</li>
+            </ul>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Short Summary Table</h2>
+        <h3>
+            <pre><code>
+Call style        | Can modify caller? | Copies made | Null allowed | Typical use
+------------------+---------------------+-------------+--------------+------------------------------
+By value          | No                  | Yes         | N/A          | primitives, small objects
+By reference (&)  | Yes                 | No          | No           | modify caller, avoid copies
+By const ref      | No                  | No          | No           | read-only large objects
+By pointer        | Yes (via *)         | No (ptr copy)| Yes         | optional args, C APIs
+By rvalue ref (&&)| Can (to rvalues)    | Moves       | N/A          | take ownership / move optimization
+            </code></pre>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Common Examples Recap</h2>
+        <h3>
+            - <code>void f(int)</code> — pass by value<br>
+            - <code>void f(const std::string&amp;)</code> — pass string by const reference (no copy)<br>
+            - <code>void f(std::string&amp;)</code> — pass by reference to modify caller's string<br>
+            - <code>void f(std::string&amp;&amp;)</code> — accept rvalue to move resources
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Further reading / Practice ideas</h2>
+        <h3>
+            - Try writing a class that manages dynamic memory (raw pointer), and then implement copy constructor, assignment operator and move constructor to see real copy vs move behavior.<br>
+            - Experiment with <code>const T&amp;</code> vs <code>T</code> in function signatures and measure performance for large objects.<br>
+            - Practice pointer/reference differences by writing functions that attempt to change a pointer's target using pointer-by-value vs pointer-by-reference.
+        </h3>
+    </div>
+</body>
+</html>

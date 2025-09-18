@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Calling in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Function Calling</h1>
+    </div>
+
+    <div class="div">
+        <h2>Concept of Function Calling</h2>
+        <h3>
+            A <b>function call</b> is the process of invoking a function so that its body gets executed.  
+            When a function is called, the program control transfers to the function’s definition,  
+            executes the code, and then returns back to the calling point.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Steps in a Function Call</h2>
+        <h3>
+            1. Control moves from the caller to the function.<br>
+            2. Arguments in the call are passed to the function’s parameters.<br>
+            3. The function body executes.<br>
+            4. If there is a return value, it is sent back to the caller.<br>
+            5. Control resumes after the function call.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Simple Function Call</h2>
+        <h3>
+            Example of calling a function with no parameters.  
+        </h3>
+        <pre><code>
+// Function Calling Example
+#include &lt;iostream&gt;
+using namespace std;
+
+void greet() { // function definition
+    cout &lt;&lt; "Hello, this is a function call!" &lt;&lt; endl;
+}
+
+int main() {
+    greet(); // function call
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Function Call with Parameters</h2>
+        <h3>
+            Parameters allow passing values into a function during the call.  
+        </h3>
+        <pre><code>
+// Function with parameters
+#include &lt;iostream&gt;
+using namespace std;
+
+void displaySum(int a, int b) {
+    cout &lt;&lt; "Sum = " &lt;&lt; (a + b) &lt;&lt; endl;
+}
+
+int main() {
+    displaySum(10, 20); // function call with arguments
+    displaySum(5, 7);   // another call
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Function Call with Return Value</h2>
+        <h3>
+            A function can return a value back to the caller.  
+        </h3>
+        <pre><code>
+// Function returning value
+#include &lt;iostream&gt;
+using namespace std;
+
+int square(int n) {
+    return n * n;
+}
+
+int main() {
+    int result = square(6); // function call
+    cout &lt;&lt; "Square = " &lt;&lt; result &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Nested Function Calls</h2>
+        <h3>
+            A function call can be used inside another expression or another function call.  
+        </h3>
+        <pre><code>
+// Nested function call
+#include &lt;iostream&gt;
+using namespace std;
+
+int doubleValue(int x) {
+    return 2 * x;
+}
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result = add(doubleValue(3), doubleValue(5)); 
+    // add(6, 10) = 16
+    cout &lt;&lt; "Result = " &lt;&lt; result &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Notes</h2>
+        <h3>
+            - Function calling transfers control temporarily to the function body.<br>
+            - Arguments in the function call must match parameters in type, number, and order.<br>
+            - Return values can be stored in variables or used directly in expressions.<br>
+            - Functions can be called multiple times to reuse logic.<br>
+        </h3>
+    </div>
+</body>
+</html>

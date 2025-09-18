@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Function Declaration and Definition</h1>
+    </div>
+
+    <div class="div">
+        <h2>Concept of Functions</h2>
+        <h3>
+            A function is a block of code designed to perform a specific task.  
+            Functions improve readability, reusability, and modularity of programs.  
+            In C++, every program must have at least one function: <code>main()</code>.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Function Declaration (Prototype)</h2>
+        <h3>
+            Theory: A function declaration tells the compiler the function’s name, return type, and parameters,  
+            but does not contain the body (implementation).  
+            It is also called a <b>function prototype</b>.  
+            Syntax:  
+            <pre><code>return_type function_name(parameter_list);</code></pre>
+            Declaration allows the function to be used before its definition.  
+        </h3>
+        <pre><code>
+// Function Declaration (prototype)
+#include &lt;iostream&gt;
+using namespace std;
+
+// declaration
+int add(int a, int b);
+
+int main() {
+    cout &lt;&lt; "Sum = " &lt;&lt; add(5, 10) &lt;&lt; endl;
+    return 0;
+}
+
+// definition (later in program)
+int add(int a, int b) {
+    return a + b;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Function Definition</h2>
+        <h3>
+            Theory: A function definition provides the actual body (implementation) of the function.  
+            It specifies what the function does when called.  
+            Syntax:  
+            <pre><code>return_type function_name(parameter_list) {
+    // body
+}</code></pre>
+        </h3>
+        <pre><code>
+// Function Definition Example
+#include &lt;iostream&gt;
+using namespace std;
+
+// definition
+void greet() {
+    cout &lt;&lt; "Hello, welcome to C++ Functions!" &lt;&lt; endl;
+}
+
+int main() {
+    greet(); // function call
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Function Call</h2>
+        <h3>
+            Theory: A function call executes the function body.  
+            Arguments provided in the call are copied (or referenced) into the function’s parameters.  
+        </h3>
+        <pre><code>
+// Function Call Example
+#include &lt;iostream&gt;
+using namespace std;
+
+int square(int x) {   // definition
+    return x * x;
+}
+
+int main() {
+    int n = 6;
+    cout &lt;&lt; "Square of " &lt;&lt; n &lt;&lt; " = " &lt;&lt; square(n) &lt;&lt; endl; // call
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Key Differences</h2>
+        <h3>
+            - <b>Declaration:</b> Only informs the compiler about the function (no body).<br>
+            - <b>Definition:</b> Provides actual implementation of the function.<br>
+            - A function must be defined exactly once, but can be declared many times.<br>
+            - If the definition comes before usage, a separate declaration is optional.<br>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Notes</h2>
+        <h3>
+            - Function declaration ends with a semicolon <code>;</code>, but function definition does not.<br>
+            - Parameters in declaration must match those in definition (both type and order).<br>
+            - Functions improve code reusability and structure.<br>
+        </h3>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump Statements in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Jump Statements</h1>
+    </div>
+
+    <div class="div">
+        <h2>break Statement</h2>
+        <h3>
+            Theory: The <code>break</code> statement is used to immediately exit from a loop or a <code>switch</code> block.  
+            Control jumps to the first statement after the loop or switch.  
+        </h3>
+        <pre><code>
+// break statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 1; i &lt;= 10; i++) {
+        if (i == 5) {
+            break; // exits loop when i == 5
+        }
+        cout &lt;&lt; i &lt;&lt; " ";
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>continue Statement</h2>
+        <h3>
+            Theory: The <code>continue</code> statement skips the rest of the code inside the current loop iteration  
+            and moves to the next iteration of the loop.  
+        </h3>
+        <pre><code>
+// continue statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 1; i &lt;= 10; i++) {
+        if (i % 2 == 0) {
+            continue; // skip even numbers
+        }
+        cout &lt;&lt; i &lt;&lt; " ";
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>goto Statement</h2>
+        <h3>
+            Theory: The <code>goto</code> statement transfers control unconditionally to a labeled statement in the same function.  
+            It can make code harder to follow, so its use is discouraged in modern C++.  
+        </h3>
+        <pre><code>
+// goto statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n = 1;
+
+start:
+    cout &lt;&lt; "Value of n = " &lt;&lt; n &lt;&lt; endl;
+    n++;
+    if (n &lt;= 5) {
+        goto start; // jump back to label
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>return Statement</h2>
+        <h3>
+            Theory: The <code>return</code> statement ends the execution of a function and optionally sends a value back to the caller.  
+            In <code>main()</code>, returning <code>0</code> usually indicates successful program termination.  
+        </h3>
+        <pre><code>
+// return statement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) {
+    return a + b; // return value to caller
+}
+
+int main() {
+    int result = add(10, 20);
+    cout &lt;&lt; "Sum = " &lt;&lt; result &lt;&lt; endl;
+
+    return 0; // end of program
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Notes</h2>
+        <h3>
+            - Use <code>break</code> to exit loops/switch when a condition is met.<br>
+            - Use <code>continue</code> to skip current iteration but keep looping.<br>
+            - Avoid <code>goto</code> unless absolutely necessary (can reduce readability).<br>
+            - Always use <code>return</code> in functions with non-void return type to return a proper value.<br>
+        </h3>
+    </div>
+</body>
+</html>

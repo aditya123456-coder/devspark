@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multidimensional Arrays in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Multidimensional Arrays</h1>
+    </div>
+
+    <div class="div">
+        <h2>Definition</h2>
+        <h3>
+            A multidimensional array is an array of arrays. It can have two or more dimensions.
+            <br>
+            - A <b>one-dimensional array</b> is a list. <br>
+            - A <b>two-dimensional array</b> is like a table (rows and columns). <br>
+            - Arrays with more than two dimensions are called <b>multidimensional arrays</b>.
+            <br><br>
+            They are useful in representing mathematical concepts such as matrices, 3D grids, or higher-dimensional data.
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Declaration of Multidimensional Array</h2>
+        <h3>
+            Arrays are declared by specifying the number of dimensions inside square brackets.
+            <br><br>
+            <b>Syntax:</b><br>
+            <code>data_type array_name[size1][size2][size3]...[sizeN];</code>
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int array3D[2][3][4];  // 3-dimensional array
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Initialization of Multidimensional Arrays</h2>
+        <h3>
+            Multidimensional arrays can be initialized during declaration or later by assigning values to each index.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // 2D array initialization
+    int matrix[2][2] = {
+        {1, 2},
+        {3, 4}
+    };
+
+    // 3D array initialization
+    int cube[2][2][2] = {
+        {
+            {1, 2},
+            {3, 4}
+        },
+        {
+            {5, 6},
+            {7, 8}
+        }
+    };
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Accessing Elements of Multidimensional Array</h2>
+        <h3>
+            Elements are accessed using multiple indices. Each index corresponds to a specific dimension.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int cube[2][2][2] = {
+        {
+            {1, 2},
+            {3, 4}
+        },
+        {
+            {5, 6},
+            {7, 8}
+        }
+    };
+
+    cout &lt;&lt; "Element at [1][0][1]: " &lt;&lt; cube[1][0][1] &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Traversing a Multidimensional Array</h2>
+        <h3>
+            Nested loops are used to traverse multidimensional arrays. The number of loops must match the number of dimensions.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int cube[2][2][2] = {
+        {
+            {1, 2},
+            {3, 4}
+        },
+        {
+            {5, 6},
+            {7, 8}
+        }
+    };
+
+    cout &lt;&lt; "Elements of 3D array: " &lt;&lt; endl;
+    for (int i = 0; i &lt; 2; i++) {
+        for (int j = 0; j &lt; 2; j++) {
+            for (int k = 0; k &lt; 2; k++) {
+                cout &lt;&lt; cube[i][j][k] &lt;&lt; " ";
+            }
+            cout &lt;&lt; endl;
+        }
+        cout &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: Storing Marks of Students</h2>
+        <h3>
+            A 2D array can store marks of multiple students in multiple subjects.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int marks[3][3] = {
+        {85, 90, 78}, // Student 1
+        {88, 76, 92}, // Student 2
+        {80, 85, 89}  // Student 3
+    };
+
+    cout &lt;&lt; "Marks of students: " &lt;&lt; endl;
+    for (int i = 0; i &lt; 3; i++) {
+        cout &lt;&lt; "Student " &lt;&lt; i + 1 &lt;&lt; ": ";
+        for (int j = 0; j &lt; 3; j++) {
+            cout &lt;&lt; marks[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Key Points</h2>
+        <h3>
+            1. Multidimensional arrays can have two or more dimensions. <br>
+            2. The most common are 2D (tables) and 3D (cubes). <br>
+            3. Each additional dimension requires another index to access elements. <br>
+            4. Nested loops are used for traversal. <br>
+            5. They are useful in applications like matrices, 3D models, and scientific computations.
+        </h3>
+    </div>
+
+</body>
+</html>

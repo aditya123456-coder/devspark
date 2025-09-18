@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Classes in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Storage Classes</h1>
+    </div>
+
+    <div class="div">
+        <h2>Concept</h2>
+        <h3>
+            - A <b>storage class</b> defines the scope (visibility), lifetime, and memory location of a variable in C++. <br>
+            - It specifies how long a variable exists in memory and where it can be accessed. <br>
+            - Common storage classes: <code>auto</code>, <code>static</code>, <code>extern</code>, <code>register</code>.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>auto Storage Class</h2>
+        <h3>
+            - By default, all local variables are <code>auto</code>. <br>
+            - Exists inside a block/function only, destroyed when the block ends. <br>
+            - In modern C++ (C++11+), <code>auto</code> is used for <b>type deduction</b>, but originally it meant "automatic storage".  
+        </h3>
+        <pre><code>
+// auto storage class
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    auto x = 10;   // type deduced as int
+    auto y = 3.14; // type deduced as double
+
+    cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; ", y = " &lt;&lt; y &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>static Storage Class</h2>
+        <h3>
+            - A <code>static</code> variable inside a function keeps its value between multiple function calls. <br>
+            - Lifetime is the entire program, but scope remains local to the function. <br>
+            - At global level, <code>static</code> makes the variable accessible only in that file (internal linkage).  
+        </h3>
+        <pre><code>
+// static variable example
+#include &lt;iostream&gt;
+using namespace std;
+
+void counter() {
+    static int count = 0; // initialized only once
+    count++;
+    cout &lt;&lt; "Count = " &lt;&lt; count &lt;&lt; endl;
+}
+
+int main() {
+    counter();
+    counter();
+    counter(); // retains previous value
+    return 0;
+}
+
+/* Output:
+Count = 1
+Count = 2
+Count = 3
+*/
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>extern Storage Class</h2>
+        <h3>
+            - <code>extern</code> is used to declare a global variable that is defined in another file or scope. <br>
+            - Provides external linkage (visible across multiple files). <br>
+            - Declares but does not allocate memory. The definition must exist somewhere else.  
+        </h3>
+        <pre><code>
+// File1.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+int globalVar = 100; // definition
+
+void show();
+
+// main function
+int main() {
+    show();
+    return 0;
+}
+
+// File2.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+extern int globalVar; // declaration
+
+void show() {
+    cout &lt;&lt; "GlobalVar = " &lt;&lt; globalVar &lt;&lt; endl;
+}
+        </code></pre>
+        <h3>
+            - Here, <code>globalVar</code> is defined in File1.cpp and accessed in File2.cpp using <code>extern</code>.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>register Storage Class</h2>
+        <h3>
+            - <code>register</code> requests the compiler to store the variable in a CPU register instead of RAM for faster access. <br>
+            - Only applicable for local variables. <br>
+            - You cannot take the address of a register variable. <br>
+            - Modern compilers optimize this automatically, so <code>register</code> is rarely needed.  
+        </h3>
+        <pre><code>
+// register storage class
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    register int i; // request to keep in CPU register
+    for (i = 0; i &lt; 5; i++) {
+        cout &lt;&lt; i &lt;&lt; " ";
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Summary Table</h2>
+        <h3>
+            <pre><code>
+Storage Class | Scope        | Lifetime      | Default Value | Usage
+--------------+--------------+---------------+---------------+------------------------
+auto          | Local        | Block only    | Garbage value | Local variables (default)
+static (local)| Local        | Entire program| 0             | Retain value across calls
+static (global)| File only   | Entire program| 0             | Restrict global visibility
+extern        | Global       | Entire program| 0             | Share variable across files
+register      | Local        | Block only    | Garbage value | Faster access hint to CPU
+            </code></pre>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Best Practices</h2>
+        <h3>
+            - Use <b>static</b> for values that need to persist across function calls. <br>
+            - Use <b>extern</b> when sharing global variables across multiple files. <br>
+            - <b>register</b> is mostly obsolete; rely on compiler optimization. <br>
+            - In modern C++ prefer <code>const</code>, <code>constexpr</code>, <code>static</code>, and smart design instead of globals.  
+        </h3>
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Functions in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>String Functions</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. strlen()</h2>
+        <h3>
+            The <b>strlen()</b> function is used to find the length of a string. It counts the number of characters
+            in the string but does not include the null character '\0'.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char str[] = "Hello World";
+    cout &lt;&lt; "Length of string = " &lt;&lt; strlen(str);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. strcpy()</h2>
+        <h3>
+            The <b>strcpy()</b> function copies one string into another. The destination string must have enough space
+            to hold the copied content.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char str1[] = "C++ Strings";
+    char str2[20];
+    strcpy(str2, str1);
+    cout &lt;&lt; "Copied string: " &lt;&lt; str2;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. strcat()</h2>
+        <h3>
+            The <b>strcat()</b> function is used to concatenate (join) two strings. The result is stored in the first
+            string, which should have enough memory to hold the final combined string.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char str1[30] = "Hello";
+    char str2[] = " World";
+    strcat(str1, str2);
+    cout &lt;&lt; "Concatenated string: " &lt;&lt; str1;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. strcmp()</h2>
+        <h3>
+            The <b>strcmp()</b> function is used to compare two strings. It returns:
+            <ul>
+                <li>0 if both strings are equal</li>
+                <li>Less than 0 if the first string is smaller</li>
+                <li>Greater than 0 if the first string is larger</li>
+            </ul>
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char str1[] = "Apple";
+    char str2[] = "Banana";
+    int result = strcmp(str1, str2);
+
+    if(result == 0)
+        cout &lt;&lt; "Strings are equal";
+    else if(result &lt; 0)
+        cout &lt;&lt; "str1 is smaller than str2";
+    else
+        cout &lt;&lt; "str1 is greater than str2";
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. strchr()</h2>
+        <h3>
+            The <b>strchr()</b> function finds the first occurrence of a character in a string. 
+            It returns a pointer to the location of the character if found, otherwise NULL.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char str[] = "Hello World";
+    char *ptr = strchr(str, 'W');
+    if(ptr)
+        cout &lt;&lt; "Character found at position: " &lt;&lt; (ptr - str);
+    else
+        cout &lt;&lt; "Character not found";
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>6. strstr()</h2>
+        <h3>
+            The <b>strstr()</b> function is used to find the first occurrence of a substring in a string. 
+            If the substring is found, it returns a pointer to its first occurrence.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char str[] = "I love programming in C++";
+    char *ptr = strstr(str, "programming");
+    if(ptr)
+        cout &lt;&lt; "Substring found: " &lt;&lt; ptr;
+    else
+        cout &lt;&lt; "Substring not found";
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

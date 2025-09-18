@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Dimensional Arrays in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>One-Dimensional Arrays</h1>
+    </div>
+
+    <div class="div">
+        <h2>Definition</h2>
+        <h3>
+            An array is a collection of elements of the same data type stored in contiguous memory locations.
+            A one-dimensional array stores elements in a linear form, accessed using a single index.
+            Arrays in C++ have fixed size and can store multiple values under one variable name.
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Declaration of One-Dimensional Array</h2>
+        <h3>
+            Arrays are declared by specifying the data type, array name, and size inside square brackets.
+            <br><br>
+            <b>Syntax:</b> <br>
+            <code>data_type array_name[size];</code>
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5];  // Declaration of integer array with size 5
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Initialization of One-Dimensional Array</h2>
+        <h3>
+            Arrays can be initialized during declaration or later by assigning values to each index.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int marks[5] = {90, 85, 78, 92, 88}; // Initialization at declaration
+
+    // Another way
+    int nums[5];
+    nums[0] = 10;
+    nums[1] = 20;
+    nums[2] = 30;
+    nums[3] = 40;
+    nums[4] = 50;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Accessing Elements of Array</h2>
+        <h3>
+            Array elements are accessed using their index, starting from 0 up to (size - 1).
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5};
+
+    cout &lt;&lt; "First element: " &lt;&lt; arr[0] &lt;&lt; endl;
+    cout &lt;&lt; "Third element: " &lt;&lt; arr[2] &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Traversing a One-Dimensional Array</h2>
+        <h3>
+            Arrays can be traversed using loops like <code>for</code>, <code>while</code>, or <code>do-while</code>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+
+    cout &lt;&lt; "Array elements: " &lt;&lt; endl;
+    for (int i = 0; i &lt; 5; i++) {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: Sum of Array Elements</h2>
+        <h3>
+            This program calculates the sum of all elements of an array.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {5, 10, 15, 20, 25};
+    int sum = 0;
+
+    for (int i = 0; i &lt; 5; i++) {
+        sum += arr[i];
+    }
+
+    cout &lt;&lt; "Sum of array elements = " &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Example: Find Maximum Element</h2>
+        <h3>
+            This program finds the largest element in the array.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {12, 45, 23, 67, 34};
+    int max = arr[0];
+
+    for (int i = 1; i &lt; 5; i++) {
+        if (arr[i] &gt; max) {
+            max = arr[i];
+        }
+    }
+
+    cout &lt;&lt; "Maximum element = " &lt;&lt; max &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Key Points</h2>
+        <h3>
+            1. Arrays store multiple values of the same type in a single variable. <br>
+            2. Indexing starts from 0. <br>
+            3. Size of the array must be defined at compile time (for static arrays). <br>
+            4. Arrays can be traversed easily using loops. <br>
+            5. Array size cannot be changed once declared.
+        </h3>
+    </div>
+
+</body>
+</html>

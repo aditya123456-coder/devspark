@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Basic Concepts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Basic Concepts</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. Tokens in C++</h2>
+        <h3>
+            Tokens are the smallest individual elements in a C++ program. They include keywords, identifiers, 
+            literals, operators, and punctuation symbols. The compiler uses these tokens to construct programs.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Keywords: int, return, etc.
+    // Identifiers: main, num, etc.
+    // Literals: 10, 20.5, 'A', "Hello"
+    // Operators: +, -, =, etc.
+    
+    int num = 10;          // 'int' is keyword, 'num' is identifier, '10' is literal
+    double price = 20.5;   // 'double' is keyword, 'price' is identifier, '20.5' is literal
+    char grade = 'A';      // 'char' is keyword, 'grade' is identifier, 'A' is literal
+    string name = "John";  // 'string' is class, 'name' is identifier, "John" is literal
+    
+    int result = num + 5;  // '+' and '=' are operators
+    
+    return 0;              // 'return' is keyword
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Data Types</h2>
+        <h3>
+            Data types define the type of data a variable can hold. C++ provides various built-in data types 
+            including primitive types (int, float, double, char, bool) and derived types (arrays, pointers, etc.).
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Integer types
+    int age = 25;                    // Typically 4 bytes
+    short int smallNumber = 100;     // Typically 2 bytes
+    long int bigNumber = 1000000;    // Typically 4 or 8 bytes
+    
+    // Floating-point types
+    float price = 10.99f;            // Single precision, 4 bytes
+    double pi = 3.1415926535;        // Double precision, 8 bytes
+    long double precisePi = 3.141592653589793238L; // Extended precision
+    
+    // Character type
+    char grade = 'A';                // 1 byte
+    wchar_t wideChar = L'€';         // Wide character
+    
+    // Boolean type
+    bool isCppFun = true;            // 1 byte (true or false)
+    
+    // Void type
+    void* ptr;                       // Represents absence of type
+    
+    cout << "Age: " << age << endl;
+    cout << "Price: " << price << endl;
+    cout << "Grade: " << grade << endl;
+    cout << "Is C++ fun? " << isCppFun << endl;
+    
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Variables and Constants</h2>
+        <h3>
+            Variables are named storage locations that hold data which can be changed during program execution. 
+            Constants are values that cannot be changed after they are defined.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+// Global constant
+const double PI = 3.14159;
+
+int main() {
+    // Variable declaration and initialization
+    int count = 10;
+    float temperature = 36.6f;
+    char initial = 'J';
+    
+    // Variable declaration without initialization
+    int score;
+    score = 95;  // Assignment later
+    
+    // Constant variables
+    const int MAX_STUDENTS = 30;
+    const string GREETING = "Hello, World!";
+    
+    // Using const with pointers
+    int value = 5;
+    const int* ptr = &value;  // Pointer to constant integer
+    int* const constPtr = &value;  // Constant pointer to integer
+    
+    // Using #define for constants (preprocessor directive)
+    #define MAX_SIZE 100
+    
+    cout << "Count: " << count << endl;
+    cout << "PI: " << PI << endl;
+    cout << "MAX_STUDENTS: " << MAX_STUDENTS << endl;
+    
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Input/Output (cin, cout)</h2>
+        <h3>
+            C++ uses streams for input and output operations. The cout object is used with the insertion operator (<<) 
+            to output data, while the cin object is used with the extraction operator (>>) to input data.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    // Output using cout
+    cout << "Hello, World!" << endl;
+    
+    // Formatting output
+    int num = 42;
+    double value = 3.14159;
+    cout << "Number: " << num << ", Value: " << value << endl;
+    
+    // Input using cin
+    int age;
+    cout << "Enter your age: ";
+    cin >> age;
+    cout << "You are " << age << " years old." << endl;
+    
+    // Multiple inputs
+    string name;
+    int year;
+    cout << "Enter your name and birth year: ";
+    cin >> name >> year;
+    cout << "Hello " << name << ", born in " << year << endl;
+    
+    // Handling strings with spaces
+    cin.ignore();  // Clear the input buffer
+    string fullName;
+    cout << "Enter your full name: ";
+    getline(cin, fullName);
+    cout << "Your full name is: " << fullName << endl;
+    
+    // Error handling
+    int number;
+    cout << "Enter a number: ";
+    if (cin >> number) {
+        cout << "You entered: " << number << endl;
+    } else {
+        cout << "That's not a valid number!" << endl;
+        cin.clear();  // Clear error state
+        cin.ignore(10000, '\n');  // Ignore invalid input
+    }
+    
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Comments in C++</h2>
+        <h3>
+            Comments are non-executable statements used to document code. C++ supports single-line comments (//) 
+            and multi-line comments (/* ... */). Comments improve code readability and help in maintenance.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+/*
+ * This is a multi-line comment.
+ * It can span multiple lines.
+ * Often used for file headers and function descriptions.
+ */
+
+// Function to calculate square of a number
+int square(int n) {
+    return n * n;  // Single-line comment at end of line
+}
+
+int main() {
+    // Single-line comment - explains the following code
+    int x = 5;
+    
+    /*
+     * This is another multi-line comment
+     * explaining a block of code
+     */
+    int y = 10;
+    int result = x + y;
+    
+    cout << "The sum of " << x << " and " << y << " is " << result << endl;
+    
+    // TODO: Add more functionality here - TODO comments are common
+    
+    // Commented-out code (sometimes used for debugging)
+    // cout << "This won't be executed" << endl;
+    
+    /* 
+     * Different comment styles for different purposes:
+     * // - For single line comments
+     * /* */ - For multi-line comments
+     */
+    
+    return 0;
+}
+
+// Note: Comments are ignored by the compiler and don't affect program execution
+        </code></pre>
+    </div>
+
+</body>
+</html>

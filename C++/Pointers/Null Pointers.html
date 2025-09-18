@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Null Pointers in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Null Pointers</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. Introduction to Null Pointers</h2>
+        <h3>
+            A <b>null pointer</b> is a pointer that does not point to any valid memory location.  
+            It is used to represent that the pointer is "empty" or not assigned yet.  
+            In C++, null pointers are usually assigned using <code>NULL</code> or <code>nullptr</code> (C++11 and later).
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p = NULL;    // null pointer
+    if(p == NULL)
+        cout &lt;&lt; "Pointer is NULL" &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. NULL vs nullptr</h2>
+        <h3>
+            <ul>
+                <li><code>NULL</code> is a macro defined as 0 in C and C++.</li>
+                <li><code>nullptr</code> was introduced in C++11 and provides a type-safe way to represent null pointers.</li>
+            </ul>
+            <code>nullptr</code> should be preferred in modern C++ because it avoids ambiguity with integer 0.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void test(int x) { cout &lt;&lt; "Integer version called\n"; }
+void test(int *p) { cout &lt;&lt; "Pointer version called\n"; }
+
+int main() {
+    test(NULL);     // may call integer version (ambiguous)
+    test(nullptr);  // calls pointer version (clear and safe)
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Checking for Null Pointers</h2>
+        <h3>
+            Before dereferencing a pointer, it is important to check if it is <code>NULL</code> or <code>nullptr</code>.  
+            Dereferencing a null pointer leads to undefined behavior (program crash).
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p = nullptr;
+
+    if(p != nullptr) {
+        cout &lt;&lt; *p &lt;&lt; endl; // safe
+    } else {
+        cout &lt;&lt; "Pointer is NULL, cannot dereference" &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Using Null Pointers in Functions</h2>
+        <h3>
+            Null pointers are often passed to functions to indicate that no valid memory or object is provided.  
+            This can be used as a way to signal special conditions.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void display(int *p) {
+    if(p == nullptr) {
+        cout &lt;&lt; "No valid data provided" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "Value = " &lt;&lt; *p &lt;&lt; endl;
+    }
+}
+
+int main() {
+    int *ptr = nullptr;
+    int num = 100;
+
+    display(ptr);  // no data
+    display(&num); // valid data
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Dangling vs Null Pointers</h2>
+        <h3>
+            <ul>
+                <li><b>Null Pointer</b>: A pointer that points to nothing (safe if checked).</li>
+                <li><b>Dangling Pointer</b>: A pointer that points to memory which has been freed or is invalid (dangerous).</li>
+            </ul>
+            To avoid dangling pointers, always assign <code>nullptr</code> after freeing memory.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p = new int(10);
+    cout &lt;&lt; "Value = " &lt;&lt; *p &lt;&lt; endl;
+
+    delete p;   // free memory
+    p = nullptr; // safe practice
+
+    if(p == nullptr)
+        cout &lt;&lt; "Pointer is NULL after delete" &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default Arguments in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Default Arguments</h1>
+    </div>
+
+    <div class="div">
+        <h2>Concept</h2>
+        <h3>
+            - A <b>default argument</b> is a value provided in the function declaration/definition that is used if the caller does not supply a value for that parameter. <br>
+            - They allow functions to be called with fewer arguments while keeping flexibility. <br>
+            - Default values are assigned from right to left (trailing parameters). <br>
+            - Syntax: <code>return_type function_name(type param = default_value, ...);</code>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Basic Example</h2>
+        <pre><code>
+// default arguments example
+#include &lt;iostream&gt;
+using namespace std;
+
+// function with default arguments
+int add(int a, int b = 5, int c = 10) {
+    return a + b + c;
+}
+
+int main() {
+    cout &lt;&lt; add(2) &lt;&lt; endl;          // uses default b=5, c=10 → 17
+    cout &lt;&lt; add(2, 3) &lt;&lt; endl;       // uses default c=10 → 15
+    cout &lt;&lt; add(2, 3, 4) &lt;&lt; endl;    // all provided → 9
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Important Rules</h2>
+        <h3>
+            - Default arguments must be given from <b>rightmost</b> parameter towards left. <br>
+            - You cannot “skip” a middle argument when calling — values are matched in order. <br>
+            - Default arguments are specified only once (usually in the declaration, not both declaration and definition). <br>
+            - Overloading and default arguments can sometimes conflict — avoid ambiguity.  
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>Declaration vs Definition</h2>
+        <h3>
+            Best practice: give default values in the declaration (prototype), not in both places.  
+        </h3>
+        <pre><code>
+// default args in declaration
+#include &lt;iostream&gt;
+using namespace std;
+
+int multiply(int a, int b = 2);  // default value here
+
+int main() {
+    cout &lt;&lt; multiply(5) &lt;&lt; endl;   // uses b = 2 → 10
+    cout &lt;&lt; multiply(5, 4) &lt;&lt; endl; // uses b = 4 → 20
+    return 0;
+}
+
+// definition without default
+int multiply(int a, int b) {
+    return a * b;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Mixing with Overloading</h2>
+        <h3>
+            - Sometimes overloading can achieve similar results to default arguments. <br>
+            - Be careful: combining both can lead to ambiguity errors.  
+        </h3>
+        <pre><code>
+// default arguments vs overloading
+#include &lt;iostream&gt;
+using namespace std;
+
+void print(string msg, int times = 1) {
+    for (int i = 0; i &lt; times; i++)
+        cout &lt;&lt; msg &lt;&lt; endl;
+}
+
+int main() {
+    print("Hello");        // default times=1
+    print("Hi", 3);        // times=3
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Default Arguments with Multiple Parameters</h2>
+        <h3>
+            - Defaults can be provided for several parameters, but only trailing ones. <br>
+            - Example: <code>void f(int a, int b = 2, int c = 3);</code> <br>
+            - Calls: <code>f(1)</code>, <code>f(1,4)</code>, <code>f(1,4,5)</code> all valid.  
+        </h3>
+        <pre><code>
+// multiple default arguments
+#include &lt;iostream&gt;
+using namespace std;
+
+void show(int a, int b = 2, int c = 3) {
+    cout &lt;&lt; "a=" &lt;&lt; a &lt;&lt; ", b=" &lt;&lt; b &lt;&lt; ", c=" &lt;&lt; c &lt;&lt; endl;
+}
+
+int main() {
+    show(1);          // a=1, b=2, c=3
+    show(1, 5);       // a=1, b=5, c=3
+    show(1, 5, 7);    // a=1, b=5, c=7
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Notes & Best Practices</h2>
+        <h3>
+            - Use default arguments to reduce code duplication. <br>
+            - Avoid writing conflicting overloads with default arguments. <br>
+            - Place defaults in the function declaration (header file) not in the definition (cpp file). <br>
+            - For readability, use defaults only when they make logical sense (e.g., default size, default tolerance). <br>
+        </h3>
+    </div>
+</body>
+</html>

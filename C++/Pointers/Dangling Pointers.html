@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dangling Pointers in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Dangling Pointers</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. Introduction to Dangling Pointers</h2>
+        <h3>
+            A <b>dangling pointer</b> is a pointer that refers to memory which has already been freed or is no longer valid.  
+            Accessing such memory can cause unpredictable behavior, crashes, or security issues.  
+            Dangling pointers are dangerous and must be avoided.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p = new int(10);
+    delete p;  // memory freed
+
+    // p is now a dangling pointer
+    // cout &lt;&lt; *p;  // ❌ Undefined behavior if accessed
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Causes of Dangling Pointers</h2>
+        <h3>
+            Dangling pointers usually occur in these cases:
+            <ul>
+                <li>Memory is freed using <code>delete</code> but the pointer is not reset.</li>
+                <li>A local variable’s address is returned from a function.</li>
+                <li>Pointer goes out of scope but is still used elsewhere.</li>
+            </ul>
+        </h3>
+    </div>
+
+    <div class="div">
+        <h2>3. Dangling Pointer due to Delete</h2>
+        <h3>
+            When memory is deallocated with <code>delete</code>, the pointer still holds the old address.  
+            If accessed, it becomes dangling.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p = new int(50);
+    cout &lt;&lt; "Value = " &lt;&lt; *p &lt;&lt; endl;
+
+    delete p;   // memory released
+    // cout &lt;&lt; *p; // ❌ Dangling pointer if accessed
+
+    p = nullptr; // ✅ safe practice
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Dangling Pointer due to Returning Local Variable</h2>
+        <h3>
+            Returning the address of a local variable from a function leads to a dangling pointer,  
+            because local variables are destroyed when the function ends.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int* getPointer() {
+    int x = 100;   // local variable
+    return &amp;x;     // ❌ dangerous, becomes dangling after function ends
+}
+
+int main() {
+    int *p = getPointer();
+    // cout &lt;&lt; *p; // ❌ Undefined behavior
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Dangling Pointer due to Scope Exit</h2>
+        <h3>
+            If a pointer points to a variable inside a block, and the block ends,  
+            the pointer becomes dangling because the variable no longer exists.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p;
+    {
+        int y = 200;
+        p = &amp;y;  // pointer valid only inside block
+    }
+    // cout &lt;&lt; *p; // ❌ Dangling after block ends
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>6. Avoiding Dangling Pointers</h2>
+        <h3>
+            To prevent dangling pointers:
+            <ul>
+                <li>Always assign <code>nullptr</code> after deleting memory.</li>
+                <li>Do not return addresses of local variables.</li>
+                <li>Be careful with variable scope and lifetime.</li>
+            </ul>
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *p = new int(30);
+    cout &lt;&lt; "Value = " &lt;&lt; *p &lt;&lt; endl;
+
+    delete p;   // free memory
+    p = nullptr; // ✅ prevents dangling
+
+    if(p == nullptr)
+        cout &lt;&lt; "Pointer is safely set to NULL" &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

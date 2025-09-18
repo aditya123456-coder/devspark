@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointers to Pointers in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Pointers to Pointers</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. What is a Pointer to Pointer?</h2>
+        <h3>
+            A <b>pointer to pointer</b> (also called a double pointer) is a pointer that stores 
+            the address of another pointer.  
+            Syntax: <code>datatype **ptr2;</code>  
+            This allows multiple levels of indirection to reach the actual data.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int x = 10;
+    int *p = &x;     // pointer to int
+    int **pp = &p;   // pointer to pointer
+
+    cout &lt;&lt; "Value of x: " &lt;&lt; x &lt;&lt; endl;
+    cout &lt;&lt; "Value using *p: " &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; "Value using **pp: " &lt;&lt; **pp &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Accessing Values with Pointer to Pointer</h2>
+        <h3>
+            Using a pointer to pointer, we can access both the pointer’s address and the final value.  
+            <code>*pp</code> gives the address stored in the first pointer.  
+            <code>**pp</code> gives the actual value of the variable.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int num = 25;
+    int *p = &num;
+    int **pp = &p;
+
+    cout &lt;&lt; "Address of num: " &lt;&lt; &num &lt;&lt; endl;
+    cout &lt;&lt; "Address stored in p: " &lt;&lt; p &lt;&lt; endl;
+    cout &lt;&lt; "Address stored in pp: " &lt;&lt; pp &lt;&lt; endl;
+
+    cout &lt;&lt; "Value using *p: " &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; "Value using **pp: " &lt;&lt; **pp &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Modifying Values with Pointer to Pointer</h2>
+        <h3>
+            A pointer to pointer can also be used to modify the original variable’s value.  
+            Changing <code>**pp</code> will directly update the original variable.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int val = 5;
+    int *p = &val;
+    int **pp = &p;
+
+    **pp = 50; // change value of val through double pointer
+
+    cout &lt;&lt; "Updated value of val: " &lt;&lt; val &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Pointers to Pointers and Functions</h2>
+        <h3>
+            We can pass a pointer to pointer as a function argument.  
+            This allows functions to change the pointer itself, not just the value it points to.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void updatePointer(int **pp) {
+    static int newVal = 100;
+    *pp = &newVal; // make pointer point to newVal
+}
+
+int main() {
+    int x = 20;
+    int *p = &x;
+
+    cout &lt;&lt; "Before update: " &lt;&lt; *p &lt;&lt; endl;
+    updatePointer(&p);
+    cout &lt;&lt; "After update: " &lt;&lt; *p &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Pointer to Pointer in Dynamic Memory</h2>
+        <h3>
+            Double pointers are often used in <b>dynamic memory allocation</b>.  
+            For example, creating a 2D array dynamically using <code>new</code>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int rows = 2, cols = 3;
+    int **matrix = new int*[rows];
+
+    for(int i = 0; i &lt; rows; i++) {
+        matrix[i] = new int[cols];
+    }
+
+    // Assign values
+    for(int i = 0; i &lt; rows; i++) {
+        for(int j = 0; j &lt; cols; j++) {
+            matrix[i][j] = (i+1) * (j+1);
+        }
+    }
+
+    // Print matrix
+    for(int i = 0; i &lt; rows; i++) {
+        for(int j = 0; j &lt; cols; j++) {
+            cout &lt;&lt; matrix[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+
+    // Free memory
+    for(int i = 0; i &lt; rows; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

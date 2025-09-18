@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Pointers in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Introduction to Pointers</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. What is a Pointer?</h2>
+        <h3>
+            A <b>pointer</b> is a special variable that stores the memory address of another variable.
+            Instead of holding a direct value, it "points" to the location in memory where the value is stored.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int num = 10;
+    int *ptr = &num; // pointer storing address of num
+
+    cout &lt;&lt; "Value of num: " &lt;&lt; num &lt;&lt; endl;
+    cout &lt;&lt; "Address of num: " &lt;&lt; &num &lt;&lt; endl;
+    cout &lt;&lt; "Pointer holds: " &lt;&lt; ptr &lt;&lt; endl;
+    cout &lt;&lt; "Value using pointer: " &lt;&lt; *ptr &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Pointer Declaration and Initialization</h2>
+        <h3>
+            A pointer is declared using the <b>*</b> symbol.  
+            Example: <code>int *p;</code> declares a pointer to an integer.  
+            Initialization is usually done using the address-of operator <b>&amp;</b>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int x = 25;
+    int *p = &x;  // pointer initialized with address of x
+
+    cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; endl;
+    cout &lt;&lt; "p points to address: " &lt;&lt; p &lt;&lt; endl;
+    cout &lt;&lt; "Value at p = " &lt;&lt; *p &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Pointer to Pointer</h2>
+        <h3>
+            A pointer can also store the address of another pointer.  
+            This is called a <b>pointer to pointer</b>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a = 50;
+    int *p = &a;      // pointer to int
+    int **pp = &p;    // pointer to pointer
+
+    cout &lt;&lt; "Value of a: " &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; "Value using *p: " &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; "Value using **pp: " &lt;&lt; **pp &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Pointers and Arrays</h2>
+        <h3>
+            The name of an array acts as a pointer to its first element.  
+            We can use pointer arithmetic to move through array elements.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    int *ptr = arr; // same as &arr[0]
+
+    for(int i = 0; i &lt; 5; i++) {
+        cout &lt;&lt; "Element " &lt;&lt; i &lt;&lt; " = " &lt;&lt; *(ptr + i) &lt;&lt; endl;
+    }
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Pointers and Functions</h2>
+        <h3>
+            Pointers allow functions to modify the original variables.  
+            This is known as <b>call by reference</b>.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void swapValues(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 5, y = 10;
+    cout &lt;&lt; "Before swap: x=" &lt;&lt; x &lt;&lt; ", y=" &lt;&lt; y &lt;&lt; endl;
+
+    swapValues(&x, &y);
+
+    cout &lt;&lt; "After swap: x=" &lt;&lt; x &lt;&lt; ", y=" &lt;&lt; y &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>6. Null Pointer</h2>
+        <h3>
+            A <b>null pointer</b> is a pointer that does not point to any valid memory location.  
+            It is usually initialized with <code>NULL</code> or <code>nullptr</code> in modern C++.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int *ptr = NULL;   // or use nullptr in C++11 and later
+    if(ptr == NULL)
+        cout &lt;&lt; "Pointer is NULL (does not point anywhere)";
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

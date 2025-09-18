@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointers and Strings in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Pointers and Strings</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. String as a Character Array</h2>
+        <h3>
+            In C++, a string can be represented as a <b>character array</b> ending with a null character <code>'\0'</code>.  
+            A pointer to a char can be used to access and manipulate these characters.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    char str[] = "Hello";
+    char *p = str;
+
+    cout &lt;&lt; "String: " &lt;&lt; p &lt;&lt; endl;
+    cout &lt;&lt; "First character: " &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; "Second character: " &lt;&lt; *(p + 1) &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Traversing String with Pointers</h2>
+        <h3>
+            A pointer can be incremented to move through each character of a string until the null character <code>'\0'</code> is reached.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    char str[] = "World";
+    char *p = str;
+
+    while(*p != '\0') {
+        cout &lt;&lt; *p &lt;&lt; " ";
+        p++;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Modifying String Using Pointers</h2>
+        <h3>
+            Since strings are stored as character arrays, we can modify individual characters using a pointer.  
+            Care should be taken when modifying string literals because they are stored in read-only memory.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    char str[] = "Cat";
+    char *p = str;
+
+    *p = 'B';   // change 'C' to 'B'
+    cout &lt;&lt; "Modified string: " &lt;&lt; str &lt;&lt; endl;
+
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Array of Strings (Array of Pointers)</h2>
+        <h3>
+            We can create an array of <code>char*</code> pointers, where each pointer points to a string.  
+            This is useful for storing multiple strings efficiently.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    const char *fruits[] = {"Apple", "Banana", "Mango", "Orange"};
+
+    for(int i = 0; i &lt; 4; i++) {
+        cout &lt;&lt; fruits[i] &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Passing Strings to Functions Using Pointers</h2>
+        <h3>
+            Strings (character arrays) can be passed to functions as pointers.  
+            This allows the function to access and manipulate the string contents.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void printString(char *s) {
+    while(*s != '\0') {
+        cout &lt;&lt; *s;
+        s++;
+    }
+    cout &lt;&lt; endl;
+}
+
+int main() {
+    char name[] = "Pointer Example";
+    printString(name);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>6. Pointer to String Literal</h2>
+        <h3>
+            A string literal can be assigned to a <code>const char*</code> pointer.  
+            Such strings cannot be modified because they are stored in read-only memory.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    const char *msg = "Hello, C++ Pointers!";
+    cout &lt;&lt; msg &lt;&lt; endl;
+
+    // *msg = 'h'; // ❌ Not allowed (string literal is read-only)
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>

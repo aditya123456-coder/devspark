@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operators and Expressions in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Operators and Expressions</h1>
+    </div>
+
+    <div class="div">
+        <h2>Arithmetic Operators</h2>
+        <h3>
+            Theory: Arithmetic operators perform numeric calculations. Common operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (modulus).
+            In C++ integer division truncates toward zero; use floating-point types for fractional results.
+        </h3>
+        <pre><code>
+// Arithmetic example - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a = 7, b = 3;
+    cout &lt;&lt; "a + b = " &lt;&lt; (a + b) &lt;&lt; endl; // 10
+    cout &lt;&lt; "a - b = " &lt;&lt; (a - b) &lt;&lt; endl; // 4
+    cout &lt;&lt; "a * b = " &lt;&lt; (a * b) &lt;&lt; endl; // 21
+    cout &lt;&lt; "a / b = " &lt;&lt; (a / b) &lt;&lt; " (integer division)" &lt;&lt; endl; // 2
+    cout &lt;&lt; "a / (double)b = " &lt;&lt; (a / (double)b) &lt;&lt; " (floating-point)" &lt;&lt; endl; // 2.33333
+    cout &lt;&lt; "a % b = " &lt;&lt; (a % b) &lt;&lt; endl; // 1
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Relational Operators</h2>
+        <h3>
+            Theory: Relational (comparison) operators compare values and produce boolean results: <code>==</code>, <code>!=</code>,
+            <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Use them in conditions (if, while).
+        </h3>
+        <pre><code>
+// Relational example - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int x = 5, y = 10;
+    cout &lt;&lt; "x == y: " &lt;&lt; (x == y) &lt;&lt; endl; // 0 (false)
+    cout &lt;&lt; "x != y: " &lt;&lt; (x != y) &lt;&lt; endl; // 1 (true)
+    cout &lt;&lt; "x &lt; y: " &lt;&lt; (x &lt; y) &lt;&lt; endl;  // 1
+    cout &lt;&lt; "x &gt;= y: " &lt;&lt; (x &gt;= y) &lt;&lt; endl; // 0
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Logical Operators</h2>
+        <h3>
+            Theory: Logical operators combine boolean expressions: <code>&amp;&amp;</code> (logical AND), <code>||</code> (logical OR),
+            <code>!</code> (logical NOT). They short-circuit: in <code>A &amp;&amp; B</code>, if A is false B is not evaluated; in <code>A || B</code>, if A is true B is not evaluated.
+        </h3>
+        <pre><code>
+// Logical operators - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+bool expensiveCheck() {
+    cout &lt;&lt; "expensiveCheck called" &lt;&lt; endl;
+    return false;
+}
+
+int main() {
+    bool a = true, b = false;
+    cout &lt;&lt; "a && b: " &lt;&lt; (a && b) &lt;&lt; endl; // false
+    cout &lt;&lt; "a || b: " &lt;&lt; (a || b) &lt;&lt; endl; // true
+
+    // Short-circuit demonstration:
+    cout &lt;&lt; "false && expensiveCheck(): " &lt;&lt; (false && expensiveCheck()) &lt;&lt; endl; // expensiveCheck not called
+    cout &lt;&lt; "true || expensiveCheck(): " &lt;&lt; (true || expensiveCheck()) &lt;&lt; endl;  // expensiveCheck not called
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Assignment Operators</h2>
+        <h3>
+            Theory: Assign values to variables: <code>=</code>. Compound assignment combines operation and assignment: <code>+=</code>, <code>-=</code>, <code>*=</code>,
+            <code>/=</code>, <code>%=</code>, etc. Right-hand side evaluated before assignment.
+        </h3>
+        <pre><code>
+// Assignment operators - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n = 5;
+    n += 3; // same as n = n + 3
+    cout &lt;&lt; "n after += 3: " &lt;&lt; n &lt;&lt; endl; // 8
+    n *= 2; // n = n * 2
+    cout &lt;&lt; "n after *= 2: " &lt;&lt; n &lt;&lt; endl; // 16
+    n %= 6;
+    cout &lt;&lt; "n after %= 6: " &lt;&lt; n &lt;&lt; endl; // 4
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Bitwise Operators</h2>
+        <h3>
+            Theory: Operate at the bit level for integral types: <code>&amp;</code> (AND), <code>|</code> (OR), <code>^</code> (XOR),
+            <code>~</code> (NOT), <code>&lt;&lt;</code> (left shift), <code>&gt;&gt;</code> (right shift). Useful for low-level programming, masks, flags.
+        </h3>
+        <pre><code>
+// Bitwise operators - C++
+#include &lt;iostream&gt;
+#include &lt;bitset&gt;
+using namespace std;
+
+int main() {
+    unsigned int a = 5;  // 0000 0101
+    unsigned int b = 3;  // 0000 0011
+    cout &lt;&lt; "a & b = " &lt;&lt; (a & b) &lt;&lt; endl; // 1 (0001)
+    cout &lt;&lt; "a | b = " &lt;&lt; (a | b) &lt;&lt; endl; // 7 (0111)
+    cout &lt;&lt; "a ^ b = " &lt;&lt; (a ^ b) &lt;&lt; endl; // 6 (0110)
+    cout &lt;&lt; "~a = " &lt;&lt; (~a) &lt;&lt; endl;         // implementation-defined sign if signed; use unsigned for clarity
+
+    cout &lt;&lt; "a << 1 = " &lt;&lt; (a << 1) &lt;&lt; " (binary " &lt;&lt; bitset&lt;8&gt;(a << 1) &lt;&lt; ")" &lt;&lt; endl; // 10
+    cout &lt;&lt; "a >> 1 = " &lt;&lt; (a >> 1) &lt;&lt; endl; // 2
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Increment and Decrement Operators</h2>
+        <h3>
+            Theory: <code>++</code> increments, <code>--</code> decrements. Two forms: prefix (<code>++x</code>) and postfix (<code>x++</code>).
+            Prefix modifies then yields the value; postfix yields original value then modifies. Important in expressions for side effects.
+        </h3>
+        <pre><code>
+// Increment/decrement - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 5;
+    cout &lt;&lt; "i = " &lt;&lt; i &lt;&lt; endl;        // 5
+    cout &lt;&lt; "++i = " &lt;&lt; ++i &lt;&lt; endl;    // increments to 6 then prints 6
+    cout &lt;&lt; "i++ = " &lt;&lt; i++ &lt;&lt; endl;    // prints 6 then increments to 7
+    cout &lt;&lt; "now i = " &lt;&lt; i &lt;&lt; endl;   // 7
+
+    // Use caution in complex expressions:
+    int x = 3;
+    int y = x++ + ++x; // undefined behavior in pre-C++17; in modern C++ avoid modifying a variable multiple times in one expression
+    cout &lt;&lt; "x final = " &lt;&lt; x &lt;&lt; ", y = " &lt;&lt; y &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Conditional (Ternary) Operator</h2>
+        <h3>
+            Theory: Ternary operator is a compact if-else: <code>condition ? expr_if_true : expr_if_false</code>.
+            It returns one of two expressions depending on the boolean condition. Useful for short conditional expressions.
+        </h3>
+        <pre><code>
+// Ternary operator - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a = 10, b = 20;
+    int maxVal = (a &gt; b) ? a : b;
+    cout &lt;&lt; "Maximum = " &lt;&lt; maxVal &lt;&lt; endl;
+
+    // can be chained but readability suffers:
+    int score = 85;
+    string grade = (score &gt;= 90) ? "A" : (score &gt;= 80) ? "B" : "C";
+    cout &lt;&lt; "Grade: " &lt;&lt; grade &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Operator Precedence and Associativity</h2>
+        <h3>
+            Theory: Precedence determines which operator is evaluated first in an expression without parentheses.
+            Associativity resolves order when operators have the same precedence (left-to-right or right-to-left).
+            Use parentheses to make intent explicit and avoid ambiguity. Common example: <code>*</code> has higher precedence than <code>+</code>.
+        </h3>
+        <pre><code>
+// Precedence and associativity - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a = 2 + 3 * 4;    // multiplication first -> 2 + (3*4) = 14
+    cout &lt;&lt; "2 + 3 * 4 = " &lt;&lt; a &lt;&lt; endl;
+
+    int b = (2 + 3) * 4;  // parentheses change order -> 20
+    cout &lt;&lt; "(2 + 3) * 4 = " &lt;&lt; b &lt;&lt; endl;
+
+    // associativity example: assignment is right-to-left
+    int x, y, z;
+    x = y = z = 5; // equivalent to x = (y = (z = 5));
+    cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; ", y = " &lt;&lt; y &lt;&lt; ", z = " &lt;&lt; z &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Type Casting</h2>
+        <h3>
+            Theory: Converting between types. Two forms: implicit (automatic) and explicit (manual). In C++ prefer C++ casts:
+            <code>static_cast&lt;T&gt;(value)</code>, <code>const_cast&lt;T&gt;(value)</code>, <code>reinterpret_cast&lt;T&gt;(value)</code>, <code>dynamic_cast&lt;T&gt;(ptr)</code>.
+            Use <code>static_cast</code> for numeric conversions. Beware of narrowing conversions (loss of data).
+        </h3>
+        <pre><code>
+// Type casting - C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 5, j = 2;
+    double div1 = i / j;                  // integer division then implicit conversion -> 2.0
+    double div2 = static_cast&lt;double&gt;(i) / j; // 5.0 / 2 -> 2.5
+    cout &lt;&lt; "div1 = " &lt;&lt; div1 &lt;&lt; endl;
+    cout &lt;&lt; "div2 = " &lt;&lt; div2 &lt;&lt; endl;
+
+    // narrowing and explicit cast:
+    double d = 3.99;
+    int truncated = static_cast&lt;int&gt;(d); // 3
+    cout &lt;&lt; "truncated = " &lt;&lt; truncated &lt;&lt; endl;
+
+    // example of reinterpret cast (low-level, use with care):
+    int val = 0x41424344;
+    char *p = reinterpret_cast&lt;char*&gt;(&amp;val); // implementation-defined result; shows raw bytes
+    cout &lt;&lt; "first byte: " &lt;&lt; static_cast&lt;int&gt;(p[0]) &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>Quick Notes, Best Practices &amp; Pitfalls</h2>
+        <h3>
+            - Prefer parentheses to make complex expressions unambiguous.<br>
+            - Avoid modifying a variable multiple times within one expression (undefined or unspecified behavior historically) — write clearer statements.<br>
+            - Use C++ cast operators (<code>static_cast</code>, etc.) instead of C-style casts for clarity and safety.<br>
+            - For bitwise operations, use unsigned types to avoid implementation-defined behavior on signed shift operations.<br>
+            - Beware integer overflow and narrowing conversions.<br>
+            - Use short-circuiting to prevent unnecessary work or to guard against unsafe operations (e.g., pointer dereference).
+        </h3>
+        <pre><code>
+// Example demonstrating safe short-circuit use:
+#include &lt;iostream&gt;
+using namespace std;
+
+bool isValidPointer(int* p) {
+    return p != nullptr;
+}
+
+int main() {
+    int *ptr = nullptr;
+    // guard with short-circuit: check pointer before dereferencing
+    if (ptr != nullptr &amp;&amp; *ptr == 10) {
+        cout &lt;&lt; "Pointer points to 10" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "Pointer invalid or not 10" &lt;&lt; endl;
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>References / Further Reading</h2>
+        <h3>
+            Use the C++ reference or your language standard for full details on operator precedence, overload rules, and cast semantics.
+        </h3>
+    </div>
+</body>
+</html>

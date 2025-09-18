@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointers to Functions in C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="head">
+        <h2 class="logo">C++</h2>
+        <h1>Pointers to Functions</h1>
+    </div>
+
+    <div class="div">
+        <h2>1. Introduction to Function Pointers</h2>
+        <h3>
+            A <b>function pointer</b> is a pointer that stores the address of a function.  
+            Using function pointers, we can call a function indirectly through the pointer.  
+            This is useful for callbacks, passing functions as arguments, and implementing dynamic behavior.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void greet() {
+    cout &lt;&lt; "Hello from function!" &lt;&lt; endl;
+}
+
+int main() {
+    void (*fp)();   // declare a function pointer
+    fp = &greet;    // store address of greet
+    fp();           // call function through pointer
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>2. Function Pointer Syntax</h2>
+        <h3>
+            The syntax to declare a function pointer:  
+            <code>returnType (*ptrName)(parameterTypes)</code>  
+            Example: <code>int (*fp)(int, int);</code> is a pointer to a function returning int and taking two int arguments.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int (*fp)(int, int);  // function pointer
+    fp = &add;
+    cout &lt;&lt; "Sum = " &lt;&lt; fp(5, 10);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>3. Passing Function Pointers to Functions</h2>
+        <h3>
+            Function pointers can be passed as arguments to other functions.  
+            This allows us to decide at runtime which function will be executed.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) { return a + b; }
+int multiply(int a, int b) { return a * b; }
+
+void compute(int x, int y, int (*operation)(int, int)) {
+    cout &lt;&lt; "Result = " &lt;&lt; operation(x, y) &lt;&lt; endl;
+}
+
+int main() {
+    compute(5, 10, add);
+    compute(5, 10, multiply);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>4. Array of Function Pointers</h2>
+        <h3>
+            We can store multiple function pointers in an array and choose which one to call at runtime.  
+            This is often used in menus and jump tables.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void hello() { cout &lt;&lt; "Hello!" &lt;&lt; endl; }
+void bye() { cout &lt;&lt; "Goodbye!" &lt;&lt; endl; }
+void welcome() { cout &lt;&lt; "Welcome!" &lt;&lt; endl; }
+
+int main() {
+    void (*actions[3])() = {hello, bye, welcome};
+
+    for(int i = 0; i &lt; 3; i++) {
+        actions[i](); // call each function
+    }
+    return 0;
+}
+        </code></pre>
+    </div>
+
+    <div class="div">
+        <h2>5. Function Pointers and Callback Mechanism</h2>
+        <h3>
+            Function pointers are often used as <b>callbacks</b>, where one function calls another through a pointer.  
+            This allows flexible and reusable code.
+        </h3>
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+void notify() {
+    cout &lt;&lt; "Task completed!" &lt;&lt; endl;
+}
+
+void process(void (*callback)()) {
+    cout &lt;&lt; "Processing..." &lt;&lt; endl;
+    callback(); // call the callback function
+}
+
+int main() {
+    process(notify);
+    return 0;
+}
+        </code></pre>
+    </div>
+
+</body>
+</html>
